@@ -1,19 +1,14 @@
-const tools=[["Word Counter","Text Tools","Count words, characters, sentences and reading time."],["Character Counter","Text Tools","Count characters."],["Case Converter","Text Tools","Transform writing cases."],["Reading Time Calculator","Text Tools","Estimate reading time."],["Percentage Calculator","Calculators","Calculate percentages and changes."],["Age Calculator","Calculators","Calculate an exact age."],["Average Calculator","Calculators","Find an average."],["Discount Calculator","Calculators","Calculate discounts."],["Date Difference Calculator","Calculators","Compare dates."],["JSON Formatter","Developer Tools","Format JSON."],["JSON Validator","Developer Tools","Validate JSON."],["Base64 Encoder","Developer Tools","Encode Base64."],["URL Encoder","Developer Tools","Encode URLs."],["Color Converter","Developer Tools","Convert color formats."],["QR Code Generator","Generators","Create QR codes."],["Password Generator","Generators","Generate passwords."],["Random Number Generator","Generators","Generate random numbers."],["Image Compressor","Image Tools","Compress images."],["Image Resizer","Image Tools","Resize images."],["Countdown Timer","Date & Time","Create countdowns."],["Unit Converter","Converters","Convert units."]];
-
-const $=s=>document.querySelector(s);
-const root=document.documentElement;
-$("#theme").onclick=()=>{const t=root.dataset.theme==="light"?"dark":"light";root.dataset.theme=t;localStorage.setItem("sot-theme",t)};
-root.dataset.theme=localStorage.getItem("sot-theme")||"dark";
-
-const menu=$("#menu"),mobile=$("#mobile");
-menu.onclick=()=>mobile.classList.toggle("open");
-mobile.querySelectorAll("a").forEach(a=>a.onclick=()=>mobile.classList.remove("open"));
-
-const input=$("#search"), results=$("#results");
-function search(q){q=q.trim().toLowerCase();if(!q){results.style.display="none";return}const f=tools.filter(t=>t.join(" ").toLowerCase().includes(q)).slice(0,7);results.innerHTML=f.length?f.map(t=>`<a class="result" href="#" data-name="${t[0]}"><div><strong>${t[0]}</strong><small>${t[1]} · ${t[2]}</small></div>↗</a>`).join(""):`<div class="result"><div><strong>No matching tool yet</strong><small>Try text, JSON, image or percentage.</small></div></div>`;results.style.display="block";results.querySelectorAll("[data-name]").forEach(a=>a.onclick=e=>{e.preventDefault();input.value=a.dataset.name;results.style.display="none"})}
+const TOOLS=[["Word Counter","Writing","Count words, characters and sentences."],["Character Counter","Writing","Count characters quickly."],["Case Converter","Writing","Transform text into useful cases."],["Reading Time Calculator","Writing","Estimate reading time."],["Remove Duplicate Lines","Writing","Clean repeated lines."],["Percentage Calculator","Calculators","Calculate percentages and changes."],["Age Calculator","Calculators","Calculate an exact age."],["Average Calculator","Calculators","Find an average."],["Discount Calculator","Calculators","Work out discounts."],["Date Difference Calculator","Calculators","Compare two dates."],["JSON Formatter","Developer","Make JSON readable."],["JSON Validator","Developer","Check JSON syntax."],["Base64 Encoder","Developer","Encode and decode Base64."],["URL Encoder","Developer","Encode and decode URL values."],["Color Converter","Developer","Convert common color formats."],["QR Code Generator","Create","Generate a QR code."],["Password Generator","Create","Create strong passwords."],["Random Number Picker","Create","Pick a random number."],["Random Name Picker","Create","Pick a name."],["Image Compressor","Images","Reduce image file size."],["Image Resizer","Images","Resize images."],["Image Converter","Images","Convert image formats."],["Countdown Timer","Time","Create a countdown."],["Unit Converter","Converters","Convert common units."]];
+const $=s=>document.querySelector(s), root=document.documentElement;
+root.dataset.theme=localStorage.getItem("sot-voy-theme")||"dark";
+$("#theme").onclick=()=>{let n=root.dataset.theme==="light"?"dark":"light";root.dataset.theme=n;localStorage.setItem("sot-voy-theme",n)};
+$("#menu").onclick=()=>$("#mobile-nav").classList.toggle("open");
+document.querySelectorAll("#mobile-nav a").forEach(a=>a.onclick=()=>$("#mobile-nav").classList.remove("open"));
+const input=$("#search"), box=$("#search-results");
+function search(q){q=q.trim().toLowerCase();if(!q){box.classList.remove("show");return}let f=TOOLS.filter(t=>t.join(" ").toLowerCase().includes(q)).slice(0,7);box.innerHTML=f.length?f.map(t=>`<a class="result" href="#" data-tool="${t[0]}"><span><b>${t[0]}</b><small>${t[1]} · ${t[2]}</small></span><span>↗</span></a>`).join(""):`<div class="result"><span><b>No matching tool yet</b><small>Try writing, calculate, JSON, image or QR.</small></span></div>`;box.classList.add("show");box.querySelectorAll("[data-tool]").forEach(a=>a.onclick=e=>{e.preventDefault();input.value=a.dataset.tool;box.classList.remove("show")})}
 input.oninput=e=>search(e.target.value);
-document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==input){e.preventDefault();input.focus()}if(e.key==="Escape"){results.style.display="none"}});
-document.addEventListener("click",e=>{if(!e.target.closest("#searchbox"))results.style.display="none"});
-document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{input.value=b.dataset.q;search(input.value);input.focus()});
-document.querySelectorAll("[data-tool]").forEach(a=>a.onclick=e=>{e.preventDefault();input.value=a.dataset.tool;window.scrollTo({top:0,behavior:"smooth"});input.focus()});
-$("#year").textContent=new Date().getFullYear();
+document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==input){e.preventDefault();input.focus()}if(e.key==="Escape")box.classList.remove("show")});
+document.addEventListener("click",e=>{if(!e.target.closest(".search-wrap"))box.classList.remove("show")});
+document.querySelectorAll("[data-search]").forEach(el=>el.onclick=e=>{e.preventDefault();input.value=el.dataset.search;search(input.value);input.focus();scrollTo({top:0,behavior:"smooth"})});
+const demo="Write clearly. Count quickly. Keep your focus on the words that matter.";
+$("#word-demo").textContent=demo.trim().split(/\s+/).length;$("#char-demo").textContent=demo.length;$("#year").textContent=new Date().getFullYear();
