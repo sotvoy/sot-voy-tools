@@ -1,142 +1,58 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="SOT VOY Tools brings fast, thoughtful browser tools for writing, calculations, development, conversions and everyday tasks.">
-  <meta name="theme-color" content="#090a10">
-  <meta name="author" content="SOT VOY">
-  <meta property="og:title" content="SOT VOY Tools — Powerful tools. Less friction.">
-  <meta property="og:description" content="A growing collection of fast, useful browser tools for getting everyday work done.">
-  <meta property="og:type" content="website">
-  <title>SOT VOY Tools — Powerful tools. Less friction.</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SOT VOY Tools — fast, focused browser tools for everyday tasks, writing, calculations and development.">
+<meta name="theme-color" content="#080a0f"><title>SOT VOY Tools — Get the little things done.</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="page-noise" aria-hidden="true"></div>
-
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="/" aria-label="SOT VOY Tools home">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="m8 12 2.5 2.5L16.5 8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-      <span class="brand-copy"><b>SOT VOY</b><small>TOOLS</small></span>
-    </a>
-
-    <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="#tools">Tools</a><a href="#categories">Categories</a><a href="#about">Why us</a><a href="#faq">FAQ</a>
-    </nav>
-
-    <div class="header-actions">
-      <button class="icon-button" id="theme-toggle" type="button" aria-label="Change theme">
-        <svg id="theme-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </button>
-      <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="#tools">Tools</a><a href="#categories">Categories</a><a href="#about">Why us</a><a href="#faq">FAQ</a>
-  </nav>
-</header>
+<header class="header"><div class="wrap navbox">
+<a class="brand" href="#"><span class="logo"><svg viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="8" stroke="currentColor"/><path d="m9 16 4 4 10-10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span><b>SOT VOY</b><small>TOOLS</small></span></a>
+<nav><a href="#tools">Tools</a><a href="#categories">Categories</a><a href="#why">Why us</a><a href="#faq">FAQ</a></nav>
+<div class="actions"><button id="theme" aria-label="Toggle theme"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button><button id="menu" class="menu" aria-label="Menu"><i></i><i></i><i></i></button></div></div>
+<div id="mobile" class="mobile"><a href="#tools">Tools</a><a href="#categories">Categories</a><a href="#why">Why us</a><a href="#faq">FAQ</a></div></header>
 
 <main>
-<section class="hero">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-glow glow-a" aria-hidden="true"></div>
-  <div class="hero-glow glow-b" aria-hidden="true"></div>
-  <div class="container hero-content">
-    <div class="eyebrow reveal"><span class="eyebrow-dot"></span> BUILT FOR THE LITTLE THINGS THAT MATTER</div>
-    <h1 class="hero-title reveal reveal-1">Powerful tools.<br><span>Less friction.</span></h1>
-    <p class="hero-description reveal reveal-2">From a quick calculation to a messy block of JSON, SOT VOY Tools gives you focused tools that help you finish the task and move on.</p>
-    <div class="hero-search reveal reveal-3" id="hero-search">
-      <span class="search-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-      <input id="tool-search" type="search" placeholder="What do you need to do? Try “JSON” or “percentage”" autocomplete="off" aria-label="Search tools">
-      <kbd>/</kbd>
-      <div class="search-results" id="search-results" aria-live="polite"></div>
-    </div>
-    <div class="hero-benefits reveal reveal-4"><span><i>✓</i> No account required</span><span><i>⚡</i> Built for speed</span><span><i>◈</i> Browser-first privacy</span></div>
-  </div>
-  <div class="hero-scroll" aria-hidden="true"><span></span> SCROLL TO EXPLORE</div>
-</section>
+<section class="hero"><div class="hero-bg"><div class="grid"></div><div class="glow g1"></div><div class="glow g2"></div></div>
+<div class="wrap hero-layout"><div class="hero-copy">
+<div class="eyebrow"><span></span> A GROWING TOOLKIT FOR THE WEB</div>
+<h1>Get the little<br><em>things done.</em></h1>
+<p class="lead">Fast, focused browser tools for calculations, conversions, text jobs and developer tasks that should not require five different websites.</p>
+<div class="searchbox" id="searchbox"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><input id="search" placeholder="What are you trying to do?" aria-label="Search tools"><kbd>/</kbd><div id="results"></div></div>
+<div class="quick"><span>Popular:</span><button data-q="Word Counter">Word Counter</button><button data-q="QR Code Generator">QR Generator</button><button data-q="JSON Formatter">JSON</button><button data-q="Percentage Calculator">Percentage</button></div>
+<div class="trustline"><span>✓ No account required</span><span>⚡ Built for speed</span><span>◈ Browser-first privacy</span></div>
+</div>
+<div class="mascot-stage"><div class="mascot"><div class="eyes"><i></i><i></i></div><div class="smile"></div><div class="screen">{ }</div></div><div class="mini-card card-a"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6.5h14M5 12h10M5 17.5h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><b>Word Counter</b><small>1,284 words</small></div><div class="mini-card card-b"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="2.2" stroke="currentColor" stroke-width="1.6"/><path d="m7 17 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b>Percentage</b><small>18% of 250 = 45</small></div></div>
+</div></section>
 
-<section class="section" id="tools">
-  <div class="container">
-    <div class="section-heading reveal-on-scroll"><div><p class="section-label">START WITH THE ESSENTIALS</p><h2>Tools people actually use.</h2></div><a href="#categories" class="text-link">Browse categories <span>↗</span></a></div>
-    <div class="tools-grid">
-      <a class="tool-card featured-card spotlight-card reveal-on-scroll" href="#" data-tool="Word Counter"><div class="card-shine"></div><div class="tool-top"><span class="tool-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6.5h14M5 12h10M5 17.5h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="tool-tag">MOST USED</span></div><h3>Word Counter</h3><p>See words, characters, sentences, paragraphs and reading time at a glance.</p><div class="tool-bottom"><span>Text Tools</span><b>↗</b></div></a>
-      <a class="tool-card spotlight-card reveal-on-scroll" href="#" data-tool="QR Code Generator"><div class="card-shine"></div><div class="tool-top"><span class="tool-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h3v3h-3zM19 17v3M17 19h3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span></div><h3>QR Code Generator</h3><p>Turn a link, message or short piece of information into a scannable QR code.</p><div class="tool-bottom"><span>Generators</span><b>↗</b></div></a>
-      <a class="tool-card spotlight-card reveal-on-scroll" href="#" data-tool="Percentage Calculator"><div class="card-shine"></div><div class="tool-top"><span class="tool-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m7 17 10-10M8 8h.01M16 16h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="16" r="2.2" stroke="currentColor" stroke-width="1.5"/></svg></span></div><h3>Percentage Calculator</h3><p>Work out percentages, increases, decreases and everyday comparisons without mental math.</p><div class="tool-bottom"><span>Calculators</span><b>↗</b></div></a>
-      <a class="tool-card spotlight-card reveal-on-scroll" href="#" data-tool="JSON Formatter"><div class="card-shine"></div><div class="tool-top"><span class="tool-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5c-2 0-2 2-2 4v1c0 1.5-.6 2-2 2 1.4 0 2 .5 2 2v1c0 2 0 4 2 4M16 5c2 0 2 2 2 4v1c0 1.5.6 2 2 2-1.4 0-2 .5-2 2v1c0 2 0 4-2 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span></div><h3>JSON Formatter</h3><p>Turn dense JSON into clean, readable structure and spot malformed data faster.</p><div class="tool-bottom"><span>Developer Tools</span><b>↗</b></div></a>
-      <a class="tool-card spotlight-card reveal-on-scroll" href="#" data-tool="Password Generator"><div class="card-shine"></div><div class="tool-top"><span class="tool-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span></div><h3>Password Generator</h3><p>Create strong random passwords in your browser without sending them to a server.</p><div class="tool-bottom"><span>Generators</span><b>↗</b></div></a>
-      <a class="tool-card spotlight-card reveal-on-scroll" href="#" data-tool="Image Compressor"><div class="card-shine"></div><div class="tool-top"><span class="tool-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="10" r="1.5" stroke="currentColor" stroke-width="1.4"/><path d="m6 17 4-4 3 3 2-2 3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><h3>Image Compressor</h3><p>Reduce image file size while keeping a practical balance between quality and speed.</p><div class="tool-bottom"><span>Image Tools</span><b>↗</b></div></a>
-    </div>
-  </div>
-</section>
+<section class="section" id="tools"><div class="wrap"><div class="head"><div><label>START HERE</label><h2>Popular tools, without the clutter.</h2><p>Jump straight into the jobs people come back for.</p></div><a href="#categories">View categories ↗</a></div>
+<div class="tools">
+<a class="tool featured" href="#" data-tool="Word Counter"><span class="badge">MOST USED</span><div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6.5h14M5 12h10M5 17.5h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><h3>Word Counter</h3><p>Count words, characters, sentences and reading time while you write.</p><b>Open tool ↗</b></a>
+<a class="tool" href="#" data-tool="QR Code Generator"><div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h3v3h-3zM19 17v3M17 19h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><h3>QR Code Generator</h3><p>Turn a link or message into a scannable QR code in seconds.</p><b>Open tool ↗</b></a>
+<a class="tool" href="#" data-tool="Percentage Calculator"><div class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="2.2" stroke="currentColor" stroke-width="1.6"/><path d="m7 17 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>Percentage Calculator</h3><p>Calculate percentages, changes, discounts and everyday comparisons.</p><b>Open tool ↗</b></a>
+<a class="tool" href="#" data-tool="JSON Formatter"><div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5c-2 0-2 2-2 4v1c0 1.5-.6 2-2 2 1.4 0 2 .5 2 2v1c0 2 0 4 2 4M16 5c2 0 2 2 2 4v1c0 1.5.6 2 2 2-1.4 0-2 .5-2 2v1c0 2 0 4-2 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><h3>JSON Formatter</h3><p>Make dense JSON readable and spot structure problems faster.</p><b>Open tool ↗</b></a>
+<a class="tool" href="#" data-tool="Password Generator"><div class="icon"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2" stroke="currentColor" stroke-width="1.7"/></svg></div><h3>Password Generator</h3><p>Create strong random passwords directly in your browser.</p><b>Open tool ↗</b></a>
+<a class="tool" href="#" data-tool="Image Compressor"><div class="icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="10" r="1.4" stroke="currentColor"/><path d="m6 17 4-4 3 3 2-2 3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><h3>Image Compressor</h3><p>Reduce image file size while keeping a useful quality balance.</p><b>Open tool ↗</b></a>
+</div></div></section>
 
-<section class="section categories-section" id="categories">
-  <div class="container">
-    <div class="section-heading stacked-heading reveal-on-scroll"><p class="section-label">ONE PLACE, MANY JOBS</p><h2>Find the right tool without the scavenger hunt.</h2><p>Organized around the things you actually need to get done—not around a wall of random utilities.</p></div>
-    <div class="categories-grid">
-      <a href="#" class="category-card spotlight-card reveal-on-scroll"><span class="category-index">01</span><span class="category-icon">Aa</span><h3>Text Tools</h3><p>Count, transform, clean and understand text without wrestling with formatting.</p><span class="category-link">Explore text tools <b>↗</b></span></a>
-      <a href="#" class="category-card spotlight-card reveal-on-scroll"><span class="category-index">02</span><span class="category-icon">∑</span><h3>Calculators</h3><p>Quick answers for percentages, dates, averages, discounts and everyday numbers.</p><span class="category-link">Explore calculators <b>↗</b></span></a>
-      <a href="#" class="category-card spotlight-card reveal-on-scroll"><span class="category-index">03</span><span class="category-icon">&lt;/&gt;</span><h3>Developer Tools</h3><p>Format, validate, encode and convert the data you touch while building on the web.</p><span class="category-link">Explore developer tools <b>↗</b></span></a>
-      <a href="#" class="category-card spotlight-card reveal-on-scroll"><span class="category-index">04</span><span class="category-icon">✦</span><h3>Generators</h3><p>Create QR codes, passwords, random values and other useful outputs in seconds.</p><span class="category-link">Explore generators <b>↗</b></span></a>
-      <a href="#" class="category-card spotlight-card reveal-on-scroll"><span class="category-index">05</span><span class="category-icon">▧</span><h3>Image Tools</h3><p>Handle common image jobs quickly, right in the browser, without a complicated editor.</p><span class="category-link">Explore image tools <b>↗</b></span></a>
-      <a href="#" class="category-card spotlight-card reveal-on-scroll"><span class="category-index">06</span><span class="category-icon">◷</span><h3>Date &amp; Time</h3><p>Compare dates, calculate ages and build countdowns without doing calendar math by hand.</p><span class="category-link">Explore date tools <b>↗</b></span></a>
-    </div>
-  </div>
-</section>
+<section class="section alt" id="categories"><div class="wrap"><div class="head stacked"><div><label>CHOOSE BY INTENT</label><h2>What are you working on?</h2><p>Tools grouped around real tasks, not a wall of random utilities.</p></div></div>
+<div class="intents">
+<a href="#" class="intent"><div class="intent-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><small>01 · WRITING</small><h3>You're writing something.</h3><p>Count it. Clean it. Transform it. Understand it.</p><div class="chips"><span>Word Counter</span><span>Case Converter</span><span>Reading Time</span></div></a>
+<a href="#" class="intent"><div class="intent-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><small>02 · DEVELOPMENT</small><h3>You're building something.</h3><p>Format, validate, encode and convert the data you touch.</p><div class="chips"><span>JSON</span><span>Base64</span><span>URL</span></div></a>
+<a href="#" class="intent"><div class="intent-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 20V10M12 20V4M18 20v-7M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><small>03 · NUMBERS</small><h3>You're figuring something out.</h3><p>Get an answer without opening a spreadsheet.</p><div class="chips"><span>Percentage</span><span>Age</span><span>Average</span></div></a>
+<a href="#" class="intent"><div class="intent-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m6 17 4-4 3 3 2-2 3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><small>04 · IMAGES</small><h3>You're working with an image.</h3><p>Resize it, compress it and get it ready for wherever it goes next.</p><div class="chips"><span>Compress</span><span>Resize</span><span>Convert</span></div></a>
+</div></div></section>
 
-<section class="section philosophy-section" id="about">
-  <div class="container why-layout">
-    <div class="why-intro reveal-on-scroll"><p class="section-label">THE SOT VOY APPROACH</p><h2>Small tools.<br><span>Thought through.</span></h2><p>Most tools should take seconds to understand. We design around that simple idea: remove the noise, make the important action obvious, and let the result get out of your way.</p></div>
-    <div class="benefits-grid">
-      <article class="benefit spotlight-card reveal-on-scroll"><span class="benefit-icon">⚡</span><h3>Fast by design</h3><p>Lightweight interfaces, direct interactions and browser-first processing wherever it makes sense.</p></article>
-      <article class="benefit spotlight-card reveal-on-scroll"><span class="benefit-icon">🔒</span><h3>Respectful by default</h3><p>When a task can stay in your browser, there is no reason to make it travel farther than necessary.</p></article>
-      <article class="benefit spotlight-card reveal-on-scroll"><span class="benefit-icon">▣</span><h3>Made for your phone</h3><p>A tool should still feel comfortable when you are doing the work from a small screen and one hand.</p></article>
-      <article class="benefit spotlight-card reveal-on-scroll"><span class="benefit-icon">✦</span><h3>Useful, not noisy</h3><p>No maze of buttons. No account wall for a simple calculation. Just enough interface to do the job well.</p></article>
-    </div>
-  </div>
-</section>
+<section class="section" id="why"><div class="wrap trust-layout"><div><label>THE SOT VOY STANDARD</label><h2>Simple tools should feel simple.</h2><p class="muted">Remove the noise, make the important action obvious, and let the result get out of your way.</p><p class="muted">When a task can safely happen in your browser, we aim to keep it there. When a tool needs something else, we will tell you clearly.</p></div>
+<div class="trust-grid"><article><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.7"/></svg><h3>Fast by design</h3><p>Focused interfaces, lightweight motion and browser-first processing wherever practical.</p></article><article><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 4.4 2.8 8.2 7 10 4.2-1.8 7-5.6 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7"/></svg><h3>Clear about privacy</h3><p>No blanket promises. Each tool will explain how it handles information.</p></article><article><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><h3>Made for real tasks</h3><p>Every tool has a job. Useful beats decorative.</p></article><article><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><h3>Built to grow</h3><p>The architecture is designed to expand without becoming a mess.</p></article></div></div></section>
 
-<section class="section workflow-section">
-  <div class="container">
-    <div class="section-heading stacked-heading reveal-on-scroll"><p class="section-label">WORKFLOWS, NOT WALLS</p><h2>Sometimes one answer needs three little tools.</h2><p>Related tools should feel connected, so the next useful step is always close.</p></div>
-    <div class="workflow-grid">
-      <article class="workflow-card reveal-on-scroll"><span class="workflow-label">WRITING FLOW</span><div class="workflow-step"><span>01</span><b>Word Counter</b><small>Check the shape of your draft.</small></div><div class="workflow-line"></div><div class="workflow-step"><span>02</span><b>Case Converter</b><small>Clean up headings or selected text.</small></div><div class="workflow-line"></div><div class="workflow-step"><span>03</span><b>Reading Time</b><small>See how long it takes to read.</small></div></article>
-      <article class="workflow-card reveal-on-scroll"><span class="workflow-label">DEVELOPER FLOW</span><div class="workflow-step"><span>01</span><b>JSON Formatter</b><small>Make the structure readable.</small></div><div class="workflow-line"></div><div class="workflow-step"><span>02</span><b>JSON Validator</b><small>Catch syntax problems.</small></div><div class="workflow-line"></div><div class="workflow-step"><span>03</span><b>Base64 Encoder</b><small>Convert the value you need.</small></div></article>
-    </div>
-  </div>
-</section>
+<section class="section alt"><div class="wrap"><div class="head stacked"><div><label>CONNECTED WORKFLOWS</label><h2>One useful tool often leads to the next.</h2><p>Related tools stay close to the task.</p></div></div><div class="flows"><article><small>WRITING FLOW</small><p><b>01</b><strong>Word Counter</strong><span>Understand your draft</span></p><i></i><p><b>02</b><strong>Case Converter</strong><span>Clean selected text</span></p><i></i><p><b>03</b><strong>Reading Time</strong><span>Estimate the finished piece</span></p></article><article><small>DEVELOPER FLOW</small><p><b>01</b><strong>JSON Formatter</strong><span>Make structure readable</span></p><i></i><p><b>02</b><strong>JSON Validator</strong><span>Catch syntax problems</span></p><i></i><p><b>03</b><strong>Base64 Encoder</strong><span>Convert the value you need</span></p></article></div></div></section>
 
-<section class="section manifesto-section">
-  <div class="container narrow-container reveal-on-scroll"><p class="section-label">WHY THIS EXISTS</p><h2>The internet has enough tools that make simple things feel complicated.</h2><div class="manifesto-copy"><p>SOT VOY Tools is being built in the opposite direction: focused pages, clear controls, useful explanations and results you can understand immediately.</p><p>As the library grows, the standard stays the same. More tools should mean more usefulness—not more clutter.</p></div></div>
-</section>
+<section class="section"><div class="wrap narrow"><label>WHY IT EXISTS</label><h2>The internet has enough tools that make simple things feel complicated.</h2><p class="muted">SOT VOY Tools is being built in the opposite direction: focused pages, clear controls, useful explanations and results you can understand immediately.</p><p class="muted">As the library grows, the standard stays the same. More tools should mean more usefulness—not more clutter.</p></div></section>
 
-<section class="section faq-section" id="faq">
-  <div class="container narrow-container">
-    <div class="section-heading stacked-heading reveal-on-scroll"><p class="section-label">FAQ</p><h2>Good questions deserve straight answers.</h2></div>
-    <div class="faq-list">
-      <details class="reveal-on-scroll"><summary>Is SOT VOY Tools free to use?<span>+</span></summary><p>The tools are being built to be freely accessible. Some parts of the platform may eventually be supported by advertising, but the core experience is designed around useful free tools.</p></details>
-      <details class="reveal-on-scroll"><summary>Do I need an account?<span>+</span></summary><p>No account should be necessary for ordinary browser tools. We want a quick calculation or conversion to stay a quick calculation or conversion.</p></details>
-      <details class="reveal-on-scroll"><summary>Does SOT VOY upload my data?<span>+</span></summary><p>For tools that can safely process information in the browser, our goal is to keep that processing on your device. Each tool will explain its data behavior clearly.</p></details>
-      <details class="reveal-on-scroll"><summary>Will more tools be added?<span>+</span></summary><p>Yes. The platform is being designed as an expandable library, with the long-term goal of covering hundreds of genuinely useful everyday and developer tasks.</p></details>
-    </div>
-  </div>
-</section>
+<section class="section alt" id="faq"><div class="wrap narrow"><label>FAQ</label><h2>Straight answers to useful questions.</h2><div class="faq"><details><summary>Is SOT VOY Tools free? <span>+</span></summary><p>The core tools are being designed to be freely accessible. Advertising may support the platform as it grows.</p></details><details><summary>Do I need an account? <span>+</span></summary><p>No account should be necessary for ordinary browser tools.</p></details><details><summary>Will my information be uploaded? <span>+</span></summary><p>Tools that can safely process information locally are designed to do so. Each individual tool will state its data behavior clearly.</p></details><details><summary>How many tools will there be? <span>+</span></summary><p>The platform is designed to grow into a large library while keeping search and navigation manageable.</p></details></div></div></section>
 </main>
-
-<footer class="site-footer">
-  <div class="container footer-main">
-    <div class="footer-brand"><a href="/" class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="m8 12 2.5 2.5L16.5 8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="brand-copy"><b>SOT VOY</b><small>TOOLS</small></span></a><p>Powerful little tools for getting useful things done.</p></div>
-    <div class="footer-column"><h3>Explore</h3><a href="#tools">Popular tools</a><a href="#categories">Categories</a><a href="#about">Our approach</a></div>
-    <div class="footer-column"><h3>Company</h3><a href="#faq">FAQ</a><a href="#">Contact</a><a href="#">About</a></div>
-    <div class="footer-column"><h3>Legal</h3><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Disclaimer</a></div>
-  </div>
-  <div class="container footer-bottom"><span>© <span id="current-year"></span> SOT VOY Tools. All rights reserved.</span><span>Built with intention.</span></div>
-</footer>
-
+<footer><div class="wrap footer-grid"><div><a class="brand" href="#"><span class="logo"><svg viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="8" stroke="currentColor"/><path d="m9 16 4 4 10-10" stroke="currentColor" stroke-width="2.2"/></svg></span><span><b>SOT VOY</b><small>TOOLS</small></span></a><p>Useful browser tools for getting everyday things done.</p></div><div><b>EXPLORE</b><a href="#tools">Popular tools</a><a href="#categories">Categories</a></div><div><b>COMPANY</b><a href="#faq">FAQ</a><a href="#">About</a></div><div><b>LEGAL</b><a href="#">Privacy</a><a href="#">Terms</a></div></div><div class="wrap foot-bottom">© <span id="year"></span> SOT VOY Tools</div></footer>
 <script src="js/app.js"></script>
-</body>
-</html>
+</body></html>
