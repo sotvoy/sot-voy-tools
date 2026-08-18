@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter - Free Online Character Count Tool</title>
+    <meta name="description" content="Count characters in your text with or without spaces. Free online character counter tool.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/character-counter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 800px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 40px; }
+        .tool-header h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+        .tool-textarea { width: 100%; min-height: 180px; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 16px; color: var(--text); resize: vertical; }
+        .tool-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .tool-stat { padding: 20px; background: var(--surface-hover); border-radius: var(--radius); text-align: center; }
+        .tool-stat-value { font-size: 28px; font-weight: 700; color: var(--primary); }
+        .tool-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Character Counter</h1><p>Count characters with or without spaces</p></div>
+                <div class="tool-content">
+                    <textarea id="textInput" class="tool-textarea" placeholder="Type or paste your text here..."></textarea>
+                    <div class="tool-stats">
+                        <div class="tool-stat"><div class="tool-stat-value" id="charCount">0</div><div class="tool-stat-label">Characters (with spaces)</div></div>
+                        <div class="tool-stat"><div class="tool-stat-value" id="charCountNoSpace">0</div><div class="tool-stat-label">Characters (no spaces)</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        const textInput = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const charCountNoSpace = document.getElementById('charCountNoSpace');
+        textInput.addEventListener('input', () => {
+            charCount.textContent = textInput.value.length;
+            charCountNoSpace.textContent = textInput.value.replace(/\s/g, '').length;
+        });
+    </script>
+</body>
+</html>

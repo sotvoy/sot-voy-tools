@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Free Online Age Calculator</title>
+    <meta name="description" content="Calculate your exact age from your birth date. Free online age calculator tool.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/age-calculator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 600px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 40px; }
+        .tool-header h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 8px; }
+        .form-group input { width: 100%; padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 16px; }
+        .tool-btn { width: 100%; padding: 16px; background: var(--gradient-primary); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; }
+        .result { margin-top: 24px; padding: 24px; background: var(--surface-hover); border-radius: var(--radius); text-align: center; }
+        .result-value { font-size: 48px; font-weight: 700; color: var(--primary); }
+        .result-label { color: var(--text-secondary); margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Age Calculator</h1><p>Calculate your exact age from your birth date</p></div>
+                <div class="tool-content">
+                    <div class="form-group">
+                        <label>Enter your birth date</label>
+                        <input type="date" id="birthDate">
+                    </div>
+                    <button class="tool-btn" onclick="calculateAge()">Calculate Age</button>
+                    <div class="result" id="result" style="display:none;">
+                        <div class="result-value" id="ageValue">0</div>
+                        <div class="result-label">years old</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function calculateAge() {
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+            document.getElementById('ageValue').textContent = age;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
