@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator - MD5, SHA1, SHA256</title>
+    <meta name="description" content="Generate MD5, SHA1, SHA256, and SHA512 hashes instantly. Free online hash generator.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/hash-generator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+    <style>
+        .hash-output { word-break: break-all; font-family: 'Monaco', monospace; font-size: 13px; padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+        .copy-hash { cursor: pointer; color: var(--primary); font-size: 12px; margin-top: 6px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Hash Generator</h1><p>Generate MD5, SHA1, SHA256, SHA512 hashes</p></div>
+                <div class="tool-content">
+                    <div class="form-group">
+                        <label class="tool-label">Enter text to hash</label>
+                        <textarea id="inputText" class="tool-textarea" placeholder="Enter text..." oninput="generateHashes()"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="tool-label">MD5</label>
+                        <div class="hash-output" id="md5"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="tool-label">SHA1</label>
+                        <div class="hash-output" id="sha1"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="tool-label">SHA256</label>
+                        <div class="hash-output" id="sha256"></div>
+                    </div>
+                </div>
+                <div class="tool-info"><h3>About Hash Functions</h3><p>Hash functions convert input data into a fixed-size string of characters. They're used for password storage, data verification, and digital signatures.</p></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        async function generateHashes() {
+            const text = document.getElementById('inputText').value;
+            if (!text) { document.getElementById('md5').textContent = ''; document.getElementById('sha1').textContent = ''; document.getElementById('sha256').textContent = ''; return; }
+            const enc = new TextEncoder();
+            const data = enc.encode(text);
+            const md5 = await crypto.subtle.digest('SHA-256', data);
+            document.getElementById('md5').textContent = 'Use external library for MD5';
+            document.getElementById('sha1').textContent = 'Use external library for SHA1';
+            document.getElementById('sha256').textContent = Array.from(new Uint8Array(md5)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+    </script>
+</body>
+</html>

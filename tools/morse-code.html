@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Converter - Encode/Decode</title>
+    <meta name="description" content="Convert text to Morse code and vice versa. Free online Morse code translator.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/morse-code.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Morse Code Converter</h1><p>Convert between text and Morse code</p></div>
+                <div class="tool-content">
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="mode" value="encode" checked onchange="convertMorse()"> Encode</label>
+                        <label class="option-label"><input type="radio" name="mode" value="decode" onchange="convertMorse()"> Decode</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="tool-label">Input</label>
+                        <textarea id="inputText" class="tool-textarea" placeholder="Enter text or Morse code..." oninput="convertMorse()"></textarea>
+                    </div>
+                    <div class="tool-actions">
+                        <button class="tool-btn secondary" onclick="clearAll()">Clear</button>
+                        <button class="tool-btn secondary" onclick="copyOutput()">Copy</button>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label class="tool-label">Output</label>
+                        <textarea id="outputText" class="tool-textarea mono" readonly placeholder="Result..."></textarea>
+                    </div>
+                </div>
+                <div class="tool-info"><h3>Morse Code Reference</h3><p>Used to transmit messages internationally. Each letter and number is represented by a unique combination of dots (.) and dashes (-).</p></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        const morseCode = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', ' ': '/'};
+        const textToMorse = Object.fromEntries(Object.entries(morseCode).map(([k, v]) => [v, k]));
+        function convertMorse() {
+            const mode = document.querySelector('input[name="mode"]:checked').value;
+            const input = document.getElementById('inputText').value.toUpperCase();
+            if (mode === 'encode') { document.getElementById('outputText').value = input.split('').map(c => morseCode[c] || c).join(' '); }
+            else { document.getElementById('outputText').value = input.split(' ').map(c => textToMorse[c] || c).join(''); }
+        }
+        function clearAll() { document.getElementById('inputText').value = ''; document.getElementById('outputText').value = ''; }
+        function copyOutput() { navigator.clipboard.writeText(document.getElementById('outputText').value); }
+    </script>
+</body>
+</html>

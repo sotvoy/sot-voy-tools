@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epoch Converter - Unix Timestamp Converter</title>
+    <meta name="description" content="Convert between Unix timestamps and human-readable dates instantly.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/epoch-converter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+    <style>
+        .tool-container { max-width: 600px; margin: 0 auto; }
+        .time-display { font-family: 'Monaco', monospace; font-size: 18px; padding: 20px; background: var(--surface-hover); border-radius: var(--radius-lg); text-align: center; margin: 20px 0; }
+        .quick-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .quick-btn { padding: 8px 14px; background: var(--surface-hover); border: 1px solid var(--border); border-radius: var(--radius); font-size: 12px; cursor: pointer; transition: var(--transition); }
+        .quick-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Epoch Converter</h1><p>Convert Unix timestamps to dates and vice versa</p></div>
+                <div class="tool-content">
+                    <div class="form-group">
+                        <label class="tool-label">Unix Timestamp (seconds)</label>
+                        <input type="number" id="timestamp" class="tool-input" placeholder="e.g., 1704067200" oninput="convertFromTimestamp()">
+                    </div>
+                    <div class="time-display" id="humanDate">Select a timestamp or use quick buttons</div>
+                    <div class="quick-btns">
+                        <button class="quick-btn" onclick="setNow()">Now</button>
+                        <button class="quick-btn" onclick="setTimestamp(0)">Epoch 0 (1970)</button>
+                        <button class="quick-btn" onclick="setTimestamp(1000000000)">1 Billion</button>
+                        <button class="quick-btn" onclick="setTimestamp(1609459200)">2021 Jan 1</button>
+                        <button class="quick-btn" onclick="setTimestamp(1735689600)">2025 Jan 1</button>
+                    </div>
+                    <div class="form-group" style="margin-top: 24px;">
+                        <label class="tool-label">Or enter a date to convert to timestamp</label>
+                        <input type="datetime-local" id="dateInput" class="tool-input" onchange="convertFromDate()">
+                    </div>
+                </div>
+                <div class="tool-info"><h3>About Unix Timestamp</h3><p>Unix timestamp is the number of seconds since January 1, 1970 UTC. It's commonly used in programming, databases, and APIs to represent dates and times.</p></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function convertFromTimestamp() {
+            const ts = document.getElementById('timestamp').value;
+            if (!ts) { document.getElementById('humanDate').textContent = 'Enter a timestamp above'; return; }
+            const date = new Date(ts * 1000);
+            document.getElementById('humanDate').textContent = date.toLocaleString() + ' UTC';
+        }
+        function convertFromDate() {
+            const dateStr = document.getElementById('dateInput').value;
+            if (!dateStr) return;
+            const date = new Date(dateStr);
+            document.getElementById('timestamp').value = Math.floor(date.getTime() / 1000);
+            convertFromTimestamp();
+        }
+        function setNow() {
+            document.getElementById('timestamp').value = Math.floor(Date.now() / 1000);
+            convertFromTimestamp();
+        }
+        function setTimestamp(ts) {
+            document.getElementById('timestamp').value = ts;
+            convertFromTimestamp();
+        }
+    </script>
+</body>
+</html>

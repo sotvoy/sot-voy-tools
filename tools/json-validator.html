@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Validator - Free Online JSON Checker</title>
+    <meta name="description" content="Validate and check if your JSON is valid. Free online JSON validator and linter.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/json-validator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+    <style>
+        .tool-container { max-width: 800px; margin: 0 auto; }
+        .status-box { padding: 16px; border-radius: var(--radius-lg); text-align: center; font-weight: 600; margin-top: 16px; }
+        .status-box.valid { background: #dcfce7; color: #166534; }
+        .status-box.invalid { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>JSON Validator</h1><p>Check if your JSON is valid</p></div>
+                <div class="tool-content">
+                    <div class="form-group">
+                        <label class="tool-label">Paste JSON</label>
+                        <textarea id="jsonInput" class="tool-textarea mono" placeholder='{"name": "value"}' oninput="validateJSON()"></textarea>
+                    </div>
+                    <div class="status-box" id="statusBox">Enter JSON to validate</div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label class="tool-label">Error Details</label>
+                        <textarea id="errorOutput" class="tool-textarea mono" readonly placeholder="Error details will appear here..."></textarea>
+                    </div>
+                </div>
+                <div class="tool-info"><h3>About JSON Validation</h3><p>JSON (JavaScript Object Notation) must be properly formatted. This tool checks for syntax errors, missing quotes, trailing commas, and other common mistakes.</p></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function validateJSON() {
+            const input = document.getElementById('jsonInput').value.trim();
+            const statusBox = document.getElementById('statusBox');
+            const errorOutput = document.getElementById('errorOutput');
+            if (!input) { statusBox.textContent = 'Enter JSON to validate'; statusBox.className = 'status-box'; errorOutput.value = ''; return; }
+            try { JSON.parse(input); statusBox.textContent = '✓ Valid JSON'; statusBox.className = 'status-box valid'; errorOutput.value = ''; }
+            catch (e) { statusBox.textContent = '✗ Invalid JSON'; statusBox.className = 'status-box invalid'; errorOutput.value = e.message; }
+        }
+    </script>
+</body>
+</html>

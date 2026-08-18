@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Converter - Binary to Text, Decimal, Hex</title>
+    <meta name="description" content="Convert between binary, decimal, hex, and text instantly. Free online binary converter tool.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/binary-converter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+    <style>
+        .tool-container { max-width: 700px; margin: 0 auto; }
+        .formats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        @media (max-width: 500px) { .formats-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Binary Converter</h1><p>Convert between binary, decimal, hex, and text</p></div>
+                <div class="tool-content">
+                    <div class="form-group">
+                        <label class="tool-label">Input Value</label>
+                        <input type="text" id="inputValue" class="tool-input mono" placeholder="Enter value in any format..." oninput="convertAll()">
+                    </div>
+                    <div class="formats-grid">
+                        <div class="form-group">
+                            <label class="tool-label">Binary</label>
+                            <input type="text" id="binaryOutput" class="tool-input mono" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="tool-label">Decimal</label>
+                            <input type="text" id="decimalOutput" class="tool-input mono" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="tool-label">Hexadecimal</label>
+                            <input type="text" id="hexOutput" class="tool-input mono" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="tool-label">Text/ASCII</label>
+                            <input type="text" id="textOutput" class="tool-input mono" readonly>
+                        </div>
+                    </div>
+                    <div class="tool-actions">
+                        <button class="tool-btn secondary" onclick="copyResult()">Copy All</button>
+                        <button class="tool-btn secondary" onclick="clearAll()">Clear</button>
+                    </div>
+                </div>
+                <div class="tool-info"><h3>Supported Formats</h3><ul><li><strong>Binary:</strong> Base-2 (0, 1)</li><li><strong>Decimal:</strong> Base-10 (0-9)</li><li><strong>Hex:</strong> Base-16 (0-9, A-F)</li><li><strong>Text:</strong> ASCII characters</li></ul></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function convertAll() {
+            const input = document.getElementById('inputValue').value.trim();
+            if (!input) { clearOutputs(); return; }
+            try {
+                let num;
+                if (/^[01]+$/.test(input)) { num = parseInt(input, 2); document.getElementById('binaryOutput').value = input; }
+                else if (/^[0-9a-fA-F]+$/.test(input) && !isNaN(parseInt(input, 16))) { num = parseInt(input, 16); document.getElementById('hexOutput').value = input.toUpperCase(); }
+                else if (/^\d+$/.test(input)) { num = parseInt(input, 10); document.getElementById('decimalOutput').value = input; }
+                else { num = 0; for (let i = 0; i < input.length; i++) { num = (num << 8) | input.charCodeAt(i); } document.getElementById('textOutput').value = input; }
+                if (isNaN(num) || num < 0) { clearOutputs(); return; }
+                document.getElementById('binaryOutput').value = num.toString(2);
+                document.getElementById('decimalOutput').value = num.toString(10);
+                document.getElementById('hexOutput').value = num.toString(16).toUpperCase();
+                if (num < 128) { document.getElementById('textOutput').value = String.fromCharCode(num); }
+                else { let text = ''; let temp = num; while (temp > 0) { text = String.fromCharCode(temp & 0xFF) + text; temp = Math.floor(temp / 0x100); } document.getElementById('textOutput').value = text || String.fromCharCode(num); }
+            } catch (e) { clearOutputs(); }
+        }
+        function clearOutputs() { document.getElementById('binaryOutput').value = ''; document.getElementById('decimalOutput').value = ''; document.getElementById('hexOutput').value = ''; document.getElementById('textOutput').value = ''; }
+        function clearAll() { document.getElementById('inputValue').value = ''; clearOutputs(); }
+        function copyResult() { const text = `Binary: ${document.getElementById('binaryOutput').value}\nDecimal: ${document.getElementById('decimalOutput').value}\nHex: ${document.getElementById('hexOutput').value}\nText: ${document.getElementById('textOutput').value}`; navigator.clipboard.writeText(text); }
+    </script>
+</body>
+</html>

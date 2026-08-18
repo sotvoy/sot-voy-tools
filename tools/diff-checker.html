@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diff Checker - Compare Text Differences</title>
+    <meta name="description" content="Compare two texts and find differences instantly. Free online text diff checker.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/diff-checker.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+    <style>
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 600px) { .diff-grid { grid-template-columns: 1fr; } }
+        .diff-added { background: #dcfce7; color: #166534; padding: 2px 6px; border-radius: 3px; }
+        .diff-removed { background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 3px; text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Diff Checker</h1><p>Compare two texts and find differences</p></div>
+                <div class="tool-content">
+                    <div class="diff-grid">
+                        <div class="form-group">
+                            <label class="tool-label">Original Text</label>
+                            <textarea id="text1" class="tool-textarea" placeholder="Paste original text..." oninput="compareDiff()"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="tool-label">Changed Text</label>
+                            <textarea id="text2" class="tool-textarea" placeholder="Paste changed text..." oninput="compareDiff()"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-actions">
+                        <button class="tool-btn secondary" onclick="compareDiff()">Compare</button>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label class="tool-label">Differences</label>
+                        <div id="diffOutput" class="tool-textarea" style="white-space: pre-wrap; min-height: 150px;"></div>
+                    </div>
+                </div>
+                <div class="tool-info"><h3>How It Works</h3><p>This tool compares two texts line by line and highlights added and removed content. Green shows new content, red shows removed content.</p></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function compareDiff() {
+            const t1 = document.getElementById('text1').value.split('\n');
+            const t2 = document.getElementById('text2').value.split('\n');
+            let result = '';
+            const maxLen = Math.max(t1.length, t2.length);
+            for (let i = 0; i < maxLen; i++) {
+                const l1 = t1[i] || '', l2 = t2[i] || '';
+                if (l1 === l2) result += l1 + '\n';
+                else {
+                    if (l1) result += `<span class="diff-removed">${l1}</span>\n`;
+                    if (l2) result += `<span class="diff-added">${l2}</span>\n`;
+                }
+            }
+            document.getElementById('diffOutput').innerHTML = result || 'Enter texts to compare';
+        }
+    </script>
+</body>
+</html>
