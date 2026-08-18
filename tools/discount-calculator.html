@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator - Free Online Discount Calculator</title>
+    <meta name="description" content="Calculate discount prices and savings instantly. Free online discount calculator tool.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/discount-calculator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 500px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 32px; }
+        .tool-header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 6px; font-size: 14px; }
+        .form-group input { width: 100%; padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 16px; }
+        .result { margin-top: 24px; padding: 20px; background: var(--surface-hover); border-radius: var(--radius); text-align: center; }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 12px; }
+        .result-row:last-child { margin-bottom: 0; font-weight: 700; }
+        .result-label { color: var(--text-secondary); }
+        .result-value { font-weight: 600; }
+        .result-value.savings { color: #16a34a; }
+        .result-value.final { color: var(--primary); font-size: 20px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Discount Calculator</h1><p>Calculate discount prices and savings</p></div>
+                <div class="tool-content">
+                    <div class="form-group">
+                        <label>Original Price ($)</label>
+                        <input type="number" id="price" placeholder="100" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Discount Percentage (%)</label>
+                        <input type="number" id="discount" placeholder="20" oninput="calculate()">
+                    </div>
+                    <div class="result">
+                        <div class="result-row"><span class="result-label">You Save</span><span class="result-value savings" id="savings">$0.00</span></div>
+                        <div class="result-row"><span class="result-label">Final Price</span><span class="result-value final" id="final">$0.00</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function calculate() {
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const discount = parseFloat(document.getElementById('discount').value) || 0;
+            const savings = price * (discount / 100);
+            const final = price - savings;
+            document.getElementById('savings').textContent = '$' + savings.toFixed(2);
+            document.getElementById('final').textContent = '$' + final.toFixed(2);
+        }
+    </script>
+</body>
+</html>

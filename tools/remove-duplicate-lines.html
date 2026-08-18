@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicate Lines - Free Online Tool</title>
+    <meta name="description" content="Remove duplicate lines from text instantly. Free online duplicate line remover tool.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/remove-duplicate-lines.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 700px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 32px; }
+        .tool-header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+        .tool-textarea { width: 100%; min-height: 180px; padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; font-family: monospace; resize: vertical; }
+        .tool-stats { display: flex; gap: 16px; margin-top: 12px; font-size: 13px; color: var(--text-secondary); }
+        .tool-actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .tool-btn { padding: 10px 18px; background: var(--gradient-primary); color: white; border: none; border-radius: var(--radius); font-weight: 600; font-size: 14px; cursor: pointer; }
+        .tool-btn.secondary { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Remove Duplicate Lines</h1><p>Remove duplicate lines from text</p></div>
+                <div class="tool-content">
+                    <textarea id="input" class="tool-textarea" placeholder="Paste your text here..."></textarea>
+                    <div class="tool-stats">
+                        <span>Lines: <strong id="lineCount">0</strong></span>
+                        <span>Duplicates: <strong id="dupCount">0</strong></span>
+                    </div>
+                    <div class="tool-actions">
+                        <button class="tool-btn" onclick="removeDuplicates()">Remove Duplicates</button>
+                        <button class="tool-btn secondary" onclick="copy()">Copy</button>
+                        <button class="tool-btn secondary" onclick="clear()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        const input = document.getElementById('input');
+        input.addEventListener('input', updateStats);
+        function updateStats() {
+            const lines = input.value.split('\n').filter(l => l.trim());
+            document.getElementById('lineCount').textContent = lines.length;
+        }
+        function removeDuplicates() {
+            const lines = input.value.split('\n');
+            const unique = [...new Set(lines)];
+            const removed = lines.length - unique.length;
+            input.value = unique.join('\n');
+            document.getElementById('dupCount').textContent = removed;
+            updateStats();
+        }
+        function copy() { navigator.clipboard.writeText(input.value); }
+        function clear() { input.value = ''; updateStats(); }
+    </script>
+</body>
+</html>

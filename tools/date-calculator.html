@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculator - Free Online Date Calculator</title>
+    <meta name="description" content="Calculate days between dates, add or subtract days from any date. Free online date calculator.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/date-calculator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 500px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 32px; }
+        .tool-header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 6px; font-size: 14px; }
+        .form-group input { width: 100%; padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 16px; }
+        .result { margin-top: 24px; padding: 20px; background: var(--surface-hover); border-radius: var(--radius); text-align: center; }
+        .result-value { font-size: 28px; font-weight: 700; color: var(--primary); }
+        .result-label { font-size: 14px; color: var(--text-secondary); margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Date Calculator</h1><p>Calculate days between two dates</p></div>
+                <div class="tool-content">
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" id="startDate" onchange="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="date" id="endDate" onchange="calculate()">
+                    </div>
+                    <div class="result">
+                        <div class="result-value" id="daysResult">0</div>
+                        <div class="result-label">days between dates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        document.getElementById('startDate').valueAsDate = new Date();
+        document.getElementById('endDate').valueAsDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+        function calculate() {
+            const start = new Date(document.getElementById('startDate').value);
+            const end = new Date(document.getElementById('endDate').value);
+            const diff = Math.abs(end - start);
+            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('daysResult').textContent = days || 0;
+        }
+        calculate();
+    </script>
+</body>
+</html>
