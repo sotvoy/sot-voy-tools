@@ -295,6 +295,91 @@ img { max-width: 100%; display: block; }
     width: 100%;
 }
 
+/* Nav Dropdown */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 10px 16px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-dropdown-toggle:hover {
+    color: var(--text);
+}
+
+.nav-dropdown-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-main);
+    transition: var(--transition);
+}
+
+.nav-dropdown-toggle:hover::after {
+    width: 100%;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    z-index: 100;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.nav-dropdown-item:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+}
+
+.nav-dropdown-item svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--primary);
+    stroke-width: 2;
+    fill: none;
+}
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -430,6 +515,21 @@ img { max-width: 100%; display: block; }
 .mobile-nav-link:hover {
     color: var(--primary);
     padding-left: 8px;
+}
+
+.mobile-nav-section {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    padding: 16px 0 8px;
+}
+
+.mobile-nav-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 12px 0;
 }
 
 .mobile-theme-options {

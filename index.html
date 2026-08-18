@@ -28,7 +28,27 @@
 
                 <nav class="nav-desktop">
                     <a href="#tools" class="nav-link">Tools</a>
-                    <a href="#categories" class="nav-link">Categories</a>
+                    <div class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-toggle">Categories ▾</button>
+                        <div class="nav-dropdown-menu">
+                            <a href="categories/text.html" class="nav-dropdown-item">
+                                <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                Text Tools
+                            </a>
+                            <a href="categories/calculators.html" class="nav-dropdown-item">
+                                <svg viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                Calculators
+                            </a>
+                            <a href="categories/developer.html" class="nav-dropdown-item">
+                                <svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                                Developer
+                            </a>
+                            <a href="categories/generators.html" class="nav-dropdown-item">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h3v3H4V4zm10 0h3v3h-3V4zm-5 10h3v3h-3v-3zm0-5h3v3h-3v-3zm-5 5h3v3H9v-3zm0-5h3v3H9v-3z"/></svg>
+                                Generators
+                            </a>
+                        </div>
+                    </div>
                     <a href="#why" class="nav-link">Why SOT VOY</a>
                     <a href="#how-it-works" class="nav-link">How It Works</a>
                     <a href="#faq" class="nav-link">FAQ</a>
@@ -73,7 +93,12 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu">
         <a href="#tools" class="mobile-nav-link">Tools</a>
-        <a href="#categories" class="mobile-nav-link">Categories</a>
+        <div class="mobile-nav-section">Categories</div>
+        <a href="categories/text.html" class="mobile-nav-link">📝 Text Tools</a>
+        <a href="categories/calculators.html" class="mobile-nav-link">🧮 Calculators</a>
+        <a href="categories/developer.html" class="mobile-nav-link">💻 Developer</a>
+        <a href="categories/generators.html" class="mobile-nav-link">🎲 Generators</a>
+        <div class="mobile-nav-divider"></div>
         <a href="#why" class="mobile-nav-link">Why SOT VOY</a>
         <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
         <a href="#faq" class="mobile-nav-link">FAQ</a>
