@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOT VOY Tools - Free Online Tools for Everyday Use</title>
+    <meta name="description" content="SOT VOY Tools - A focused collection of fast browser tools for the little jobs that interrupt your day. Free, simple, and useful utilities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #fafbfc;
+            --surface: #ffffff;
+            --surface-hover: #f1f5f9;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-hero: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-hover: #334155;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --border: #334155;
+            --gradient-hero: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        [data-theme="light"] {
+            --bg: #fafbfc;
+            --surface: #ffffff;
+            --surface-hover: #f1f5f9;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --gradient-hero: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-family); background: var(--bg); color: var(--text); line-height: 1.6; transition: background 0.3s, color 0.3s; }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+        
+        /* Header */
+        .header { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; }
+        .logo-icon { width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .nav-desktop { display: flex; align-items: center; gap: 32px; }
+        .nav-link { font-weight: 500; color: var(--text-secondary); transition: 0.3s; }
+        .nav-link:hover { color: var(--primary); }
+        .header-actions { display: flex; align-items: center; gap: 16px; }
+        
+        /* Theme Toggle */
+        .theme-toggle { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--surface-hover); border-radius: var(--radius); cursor: pointer; border: 1px solid var(--border); }
+        .theme-toggle svg { width: 18px; height: 18px; fill: var(--text-secondary); }
+        .theme-dropdown { position: absolute; top: 100%; right: 0; margin-top: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: 0.3s; min-width: 150px; }
+        .theme-toggle-wrapper { position: relative; }
+        .theme-toggle-wrapper:hover .theme-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .theme-option { display: flex; align-items: center; gap: 10px; padding: 12px 16px; width: 100%; text-align: left; font-weight: 500; color: var(--text-secondary); }
+        .theme-option:hover { background: var(--surface-hover); color: var(--text); }
+        .theme-option.active { color: var(--primary); background: var(--surface-hover); }
+        .theme-option svg { width: 16px; height: 16px; fill: currentColor; }
+        
+        /* Mobile */
+        .mobile-menu-btn { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; background: var(--surface-hover); border-radius: 8px; }
+        .mobile-menu-btn svg { width: 24px; height: 24px; stroke: var(--text); fill: none; stroke-width: 2; }
+        .mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--surface); padding: 24px; transform: translateX(100%); transition: 0.3s; z-index: 99; overflow-y: auto; }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-nav-link { display: block; padding: 16px 0; font-size: 18px; font-weight: 500; color: var(--text); border-bottom: 1px solid var(--border); }
+        .mobile-theme-options { display: flex; gap: 8px; margin-top: 16px; }
+        .mobile-theme-btn { flex: 1; padding: 12px; background: var(--surface-hover); border: 1px solid var(--border); border-radius: 8px; font-weight: 500; color: var(--text-secondary); }
+        .mobile-theme-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        /* Hero */
+        .hero { padding: 80px 0; background: var(--gradient-hero); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%); }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+        .hero-text { animation: fadeInUp 0.8s ease-out; }
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(99, 102, 241, 0.1); color: var(--primary); font-size: 13px; font-weight: 600; border-radius: 20px; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-eyebrow svg { width: 14px; height: 14px; fill: currentColor; }
+        .hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+        .hero h1 span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-description { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
+        .hero-buttons { display: flex; gap: 16px; margin-bottom: 40px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-size: 15px; font-weight: 600; border-radius: var(--radius); transition: 0.3s; }
+        .btn-primary { background: var(--gradient-primary); color: white; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--surface-hover); border-color: var(--primary); }
+        .btn svg { width: 18px; height: 18px; }
+        .hero-trust { display: flex; align-items: center; gap: 24px; }
+        .trust-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-muted); }
+        .trust-item svg { width: 16px; height: 16px; fill: var(--primary); }
+        
+        /* Preview */
+        .hero-preview { animation: fadeInUp 0.8s ease-out 0.2s backwards; }
+        .preview-card { background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; border: 1px solid var(--border); }
+        .preview-header { display: flex; align-items: center; gap: 8px; padding: 16px 20px; background: var(--surface-hover); border-bottom: 1px solid var(--border); }
+        .preview-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .preview-dot.red { background: #ef4444; }
+        .preview-dot.yellow { background: #f59e0b; }
+        .preview-dot.green { background: #22c55e; }
+        .preview-title { margin-left: auto; font-size: 13px; font-weight: 500; color: var(--text-muted); }
+        .preview-content { padding: 24px; }
+        .preview-textarea { width: 100%; min-height: 120px; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-family); font-size: 15px; color: var(--text); resize: none; }
+        .preview-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+        .preview-stat { padding: 16px; background: var(--surface-hover); border-radius: var(--radius); text-align: center; }
+        .preview-stat-value { font-size: 24px; font-weight: 700; color: var(--primary); }
+        .preview-stat-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+        
+        /* Sections */
+        .section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header h2 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+        .section-header p { font-size: 18px; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
+        
+        /* Quick Find */
+        .quick-find-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+        .quick-find-card { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); text-align: center; transition: 0.3s; }
+        .quick-find-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+        .quick-find-icon { width: 48px; height: 48px; margin: 0 auto 12px; background: var(--surface-hover); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; }
+        .quick-find-icon svg { width: 24px; height: 24px; stroke: var(--primary); fill: none; stroke-width: 2; }
+        .quick-find-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .quick-find-card p { font-size: 12px; color: var(--text-muted); }
+        
+        /* Tools Grid */
+        .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: 0.3s; display: block; }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+        .tool-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+        .tool-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; }
+        [data-theme="dark"] .tool-icon { background: linear-gradient(135deg, #1e3a5f 0%, #172554 100%); }
+        .tool-icon svg { width: 24px; height: 24px; stroke: var(--primary); fill: none; stroke-width: 2; }
+        .tool-arrow { width: 32px; height: 32px; background: var(--surface-hover); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateX(-10px); transition: 0.3s; }
+        .tool-card:hover .tool-arrow { opacity: 1; transform: translateX(0); }
+        .tool-arrow svg { width: 16px; height: 16px; stroke: var(--primary); fill: none; stroke-width: 2; }
+        .tool-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .tool-card p { font-size: 14px; color: var(--text-secondary); }
+        
+        /* Categories */
+        .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .category-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; text-align: center; transition: 0.3s; }
+        .category-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+        .category-icon { width: 64px; height: 64px; margin: 0 auto 20px; background: var(--gradient-primary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; }
+        .category-icon svg { width: 28px; height: 28px; stroke: white; fill: none; stroke-width: 2; }
+        .category-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .category-card p { font-size: 14px; color: var(--text-secondary); }
+        .category-count { display: inline-block; margin-top: 12px; padding: 4px 12px; background: var(--surface-hover); border-radius: 20px; font-size: 12px; font-weight: 500; color: var(--text-muted); }
+        
+        /* Why */
+        .why-section { background: var(--surface-hover); }
+        .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .why-card { text-align: center; padding: 32px 24px; }
+        .why-icon { width: 56px; height: 56px; margin: 0 auto 20px; background: var(--surface); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
+        .why-icon svg { width: 28px; height: 28px; stroke: var(--primary); fill: none; stroke-width: 2; }
+        .why-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .why-card p { font-size: 14px; color: var(--text-secondary); }
+        
+        /* Steps */
+        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; position: relative; }
+        .steps-grid::before { content: ''; position: absolute; top: 40px; left: 20%; right: 20%; height: 2px; background: var(--border); }
+        .step-card { text-align: center; position: relative; }
+        .step-number { width: 80px; height: 80px; margin: 0 auto 24px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: white; position: relative; z-index: 1; }
+        .step-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+        .step-card p { font-size: 15px; color: var(--text-secondary); }
+        
+        /* FAQ */
+        .faq-section { background: var(--surface-hover); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+        .faq-question { width: 100%; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 600; color: var(--text); text-align: left; }
+        .faq-question:hover { color: var(--primary); }
+        .faq-icon { width: 24px; height: 24px; stroke: var(--text-muted); fill: none; stroke-width: 2; transition: 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); stroke: var(--primary); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s; }
+        .faq-answer-content { padding: 0 24px 20px; font-size: 15px; color: var(--text-secondary); }
+        .faq-item.active .faq-answer { max-height: 200px; }
+        
+        /* CTA */
+        .cta-card { background: var(--gradient-primary); border-radius: 24px; padding: 60px; color: white; text-align: center; position: relative; overflow: hidden; }
+        .cta-card::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); }
+        .cta-card h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; position: relative; }
+        .cta-card p { font-size: 18px; opacity: 0.9; margin-bottom: 32px; position: relative; }
+        .cta-button { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: white; color: var(--primary); font-size: 16px; font-weight: 600; border-radius: var(--radius); transition: 0.3s; position: relative; }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        /* Footer */
+        .footer { background: var(--surface); border-top: 1px solid var(--border); padding: 60px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand p { font-size: 14px; color: var(--text-secondary); margin-top: 16px; }
+        .footer-column h4 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { font-size: 14px; color: var(--text-secondary); transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary); }
+        .footer-bottom { padding-top: 30px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+        .footer-bottom p { font-size: 14px; color: var(--text-muted); }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 40px; }
+            .hero-buttons { justify-content: center; }
+            .hero-trust { justify-content: center; }
+            .hero-preview { max-width: 500px; margin: 40px auto 0; }
+            .tools-grid, .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-desktop, .header .theme-toggle-wrapper { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .mobile-menu { display: block; }
+            .hero { padding: 60px 0; }
+            .hero h1 { font-size: 32px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .hero-trust { flex-direction: column; gap: 12px; }
+            .quick-find-grid, .tools-grid, .categories-grid, .why-grid, .steps-grid { grid-template-columns: 1fr; }
+            .steps-grid::before { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <span>SOT VOY Tools</span>
+                </a>
+                <nav class="nav-desktop">
+                    <a href="#tools" class="nav-link">Tools</a>
+                    <a href="#categories" class="nav-link">Categories</a>
+                    <a href="#why" class="nav-link">Why SOT VOY</a>
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </button>
+                        <div class="theme-dropdown">
+                            <button class="theme-option active" data-theme="system"><svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3"/></svg>System</button>
+                            <button class="theme-option" data-theme="light"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707"/></svg>Light</button>
+                            <button class="theme-option" data-theme="dark"><svg viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>Dark</button>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-btn" aria-label="Open menu">
+                        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu">
+        <a href="#tools" class="mobile-nav-link">Tools</a>
+        <a href="#categories" class="mobile-nav-link">Categories</a>
+        <a href="#why" class="mobile-nav-link">Why SOT VOY</a>
+        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+        <div class="mobile-theme-options">
+            <button class="mobile-theme-btn active" data-theme="system">System</button>
+            <button class="mobile-theme-btn" data-theme="light">Light</button>
+            <button class="mobile-theme-btn" data-theme="dark">Dark</button>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-eyebrow"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Free Online Tools</span>
+                    <h1>The right tool.<br><span>Right when you need it.</span></h1>
+                    <p class="hero-description">A focused collection of fast browser tools for the little jobs that interrupt your day — writing, calculating, formatting, converting, creating, and everything in between.</p>
+                    <div class="hero-buttons">
+                        <a href="#tools" class="btn btn-primary">Explore Tools<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
+                    </div>
+                    <div class="hero-trust">
+                        <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>100% Free</span>
+                        <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>No Registration</span>
+                        <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Browser-Based</span>
+                    </div>
+                </div>
+                <div class="hero-preview">
+                    <div class="preview-card">
+                        <div class="preview-header">
+                            <span class="preview-dot red"></span><span class="preview-dot yellow"></span><span class="preview-dot green"></span>
+                            <span class="preview-title">Word Counter</span>
+                        </div>
+                        <div class="preview-content">
+                            <textarea class="preview-textarea">The quick brown fox jumps over the lazy dog. This is a sample text to demonstrate the word counter tool.</textarea>
+                            <div class="preview-stats">
+                                <div class="preview-stat"><div class="preview-stat-value">18</div><div class="preview-stat-label">Words</div></div>
+                                <div class="preview-stat"><div class="preview-stat-value">104</div><div class="preview-stat-label">Characters</div></div>
+                                <div class="preview-stat"><div class="preview-stat-value">1</div><div class="preview-stat-label">Min Read</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section quick-find" id="quick-find">
+        <div class="container">
+            <div class="section-header"><h2>What are you here to do?</h2><p>Find the right tool quickly based on what you need.</p></div>
+            <div class="quick-find-grid">
+                <div class="quick-find-card"><div class="quick-find-icon"><svg viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></div><h3>Write</h3><p>Count, format, analyze</p></div>
+                <div class="quick-find-card"><div class="quick-find-icon"><svg viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h3>Calculate</h3><p>Numbers, percentages, dates</p></div>
+                <div class="quick-find-card"><div class="quick-find-icon"><svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><h3>Format</h3><p>JSON, code, data</p></div>
+                <div class="quick-find-card"><div class="quick-find-icon"><svg viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg></div><h3>Convert</h3><p>Units, colors, encoding</p></div>
+                <div class="quick-find-card"><div class="quick-find-icon"><svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg></div><h3>Create</h3><p>QR codes, passwords</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section featured-tools" id="tools" style="background:var(--surface-hover)">
+        <div class="container">
+            <div class="section-header"><h2>Featured Tools</h2><p>Our most popular and useful tools, ready to use instantly.</p></div>
+            <div class="tools-grid">
+                <a href="/tools/word-counter.html" class="tool-card"><div class="tool-card-header"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><div class="tool-arrow"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></div><h3>Word Counter</h3><p>Count words, characters, sentences, and reading time instantly.</p></a>
+                <a href="/tools/qr-code-generator.html" class="tool-card"><div class="tool-card-header"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h2M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg></div><div class="tool-arrow"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></div><h3>QR Code Generator</h3><p>Create QR codes for URLs, text, WiFi, and more in seconds.</p></a>
+                <a href="/tools/percentage-calculator.html" class="tool-card"><div class="tool-card-header"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><div class="tool-arrow"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></div><h3>Percentage Calculator</h3><p>Calculate percentages, percentage change, and more.</p></a>
+                <a href="/tools/countdown-timer.html" class="tool-card"><div class="tool-card-header"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="tool-arrow"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></div><h3>Countdown Timer</h3><p>Set custom countdown timers for events, meetings, and reminders.</p></a>
+                <a href="/tools/json-formatter.html" class="tool-card"><div class="tool-card-header"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><div class="tool-arrow"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></div><h3>JSON Formatter</h3><p>Format, validate, and beautify your JSON data.</p></a>
+                <a href="/tools/password-generator.html" class="tool-card"><div class="tool-card-header"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg></div><div class="tool-arrow"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></div><h3>Password Generator</h3><p>Create strong, secure passwords instantly.</p></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section categories" id="categories">
+        <div class="container">
+            <div class="section-header"><h2>Tool Categories</h2><p>Browse tools by category to find exactly what you need.</p></div>
+            <div class="categories-grid">
+                <div class="category-card"><div class="category-icon"><svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>Text Tools</h3><p>Word counters, case converters, and text analyzers</p><span class="category-count">5 Tools</span></div>
+                <div class="category-card"><div class="category-icon"><svg viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h3>Calculators</h3><p>Percentage, age, and date calculators</p><span class="category-count">5 Tools</span></div>
+                <div class="category-card"><div class="category-icon"><svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><h3>Developer Tools</h3><p>JSON, Base64, URL encoding and more</p><span class="category-count">5 Tools</span></div>
+                <div class="category-card"><div class="category-icon"><svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg></div><h3>Generators</h3><p>QR codes, passwords, and random generators</p><span class="category-count">4 Tools</span></div>
+                <div class="category-card"><div class="category-icon"><svg viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><h3>Image Tools</h3><p>Image compression and optimization</p><span class="category-count">2 Tools</span></div>
+                <div class="category-card"><div class="category-icon"><svg viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><h3>Date & Time</h3><p>Countdown timers and date calculators</p><span class="category-count">3 Tools</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section why-section" id="why">
+        <div class="container">
+            <div class="section-header"><h2>Why SOT VOY Tools?</h2><p>What makes our tools different from the rest.</p></div>
+            <div class="why-grid">
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Fast</h3><p>Lightning-fast tools that work instantly in your browser.</p></div>
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Simple</h3><p>Clean, intuitive interfaces designed for anyone.</p></div>
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3>Private</h3><p>All processing happens in your browser. Your data never leaves your device.</p></div>
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h3>Mobile-Friendly</h3><p>Works perfectly on any device.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header"><h2>How It Works</h2><p>Get started in seconds. No sign-up required.</p></div>
+            <div class="steps-grid">
+                <div class="step-card"><div class="step-number">01</div><h3>Choose a Tool</h3><p>Browse our collection or use the quick finder to locate exactly what you need.</p></div>
+                <div class="step-card"><div class="step-number">02</div><h3>Work Instantly</h3><p>Use the tool right in your browser. Paste your data, make your calculations, get your results.</p></div>
+                <div class="step-card"><div class="step-number">03</div><h3>Finish & Continue</h3><p>Copy your results and move on. Discover more tools as you need them.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+        <div class="container">
+            <div class="section-header"><h2>Frequently Asked Questions</h2><p>Got questions? We've got answers.</p></div>
+            <div class="faq-list">
+                <div class="faq-item"><button class="faq-question">Are these tools really free?<svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Yes, absolutely! All tools on SOT VOY Tools are completely free to use. No hidden fees, no subscriptions, no registration required.</div></div></div>
+                <div class="faq-item"><button class="faq-question">Is my data safe?<svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Absolutely. All processing happens locally in your browser. Your data is never sent to our servers.</div></div></div>
+                <div class="faq-item"><button class="faq-question">Do I need to install anything?<svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Not at all! All tools work directly in your web browser. No downloads, no installations.</div></div></div>
+                <div class="faq-item"><button class="faq-question">Can I use these tools on my phone?<svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Yes! All our tools are fully responsive and work great on mobile devices.</div></div></div>
+                <div class="faq-item"><button class="faq-question">How often do you add new tools?<svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">We're constantly working on new tools and improvements. Our goal is to reach 100-200+ tools over time.</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Ready to get started?</h2>
+                <p>Explore our collection of free online tools and make your daily tasks easier.</p>
+                <a href="#tools" class="cta-button">Explore All Tools<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="/" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span>SOT VOY Tools</span></a><p>A focused collection of fast, free, browser-based tools for everyday tasks.</p></div>
+                <div class="footer-column"><h4>Tools</h4><ul class="footer-links"><li><a href="/tools/word-counter.html">Word Counter</a></li><li><a href="/tools/percentage-calculator.html">Percentage Calculator</a></li><li><a href="/tools/json-formatter.html">JSON Formatter</a></li><li><a href="/tools/password-generator.html">Password Generator</a></li></ul></div>
+                <div class="footer-column"><h4>Categories</h4><ul class="footer-links"><li><a href="/categories/text.html">Text Tools</a></li><li><a href="/categories/calculators.html">Calculators</a></li><li><a href="/categories/developer.html">Developer Tools</a></li><li><a href="/categories/generators.html">Generators</a></li></ul></div>
+                <div class="footer-column"><h4>Company</h4><ul class="footer-links"><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/terms.html">Terms of Service</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme System
+        const html = document.documentElement;
+        function applyTheme(theme) {
+            if (theme === 'system') {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                html.setAttribute('data-theme', 'system');
+            } else { html.setAttribute('data-theme', theme); }
+            document.querySelectorAll('.theme-option, .mobile-theme-btn').forEach(el => el.classList.toggle('active', el.dataset.theme === theme));
+            localStorage.setItem('theme', theme);
+        }
+        applyTheme(localStorage.getItem('theme') || 'system');
+        document.querySelectorAll('.theme-option').forEach(opt => opt.addEventListener('click', () => applyTheme(opt.dataset.theme)));
+        document.querySelectorAll('.mobile-theme-btn').forEach(btn => btn.addEventListener('click', () => applyTheme(btn.dataset.theme)));
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (localStorage.getItem('theme') === 'system') applyTheme('system'); });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('active'); });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('active')));
+
+        // FAQ
+        document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', () => {
+            const item = q.parentElement;
+            document.querySelectorAll('.faq-item').forEach(f => { f.classList.remove('active'); f.querySelector('.faq-question').setAttribute('aria-expanded', 'false'); });
+            item.classList.add('active');
+            q.setAttribute('aria-expanded', 'true');
+        }));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); }));
+    </script>
+</body>
+</html>
