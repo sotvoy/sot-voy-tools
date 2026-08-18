@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to CSV Converter - Free Online Tool</title>
+    <meta name="description" content="Convert JSON data to CSV instantly. Free online JSON to CSV converter.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/json-to-csv.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+</head>
+<body>
+    <div class="bg-shapes"><div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div></div>
+    <header class="header">
+        <div class="container"><div class="header-inner">
+            <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+            <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+            <div class="header-actions"><div class="theme-toggle-wrap"><button class="theme-toggle"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button><div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div></div><button class="mobile-menu-btn"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
+        </div></div>
+    </header>
+    <div class="mobile-menu"><a href="#tools" class="mobile-nav-link">Tools</a><a href="#categories" class="mobile-nav-link">Categories</a><div class="mobile-theme-options"><button class="mobile-theme-btn" data-theme="system">System</button><button class="mobile-theme-btn" data-theme="light">Light</button><button class="mobile-theme-btn" data-theme="dark">Dark</button></div></div>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container" style="max-width: 700px;">
+                <div class="tool-header"><h1>JSON to CSV</h1><p>Convert JSON array to CSV format</p></div>
+                <div class="tool-content">
+                    <div class="form-group"><label>Paste JSON array</label><textarea id="jsonInput" class="tool-textarea" placeholder='[{"name":"John","age":30},{"name":"Jane","age":25}]'></textarea></div>
+                    <button class="tool-btn" onclick="convert()">Convert to CSV</button>
+                    <div style="margin-top: 16px;"><textarea id="csvOutput" class="tool-textarea" readonly placeholder="CSV output will appear here..."></textarea></div>
+                    <div class="tool-actions"><button class="tool-btn" onclick="copy()">Copy CSV</button></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-simple"><div class="container"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function convert() {
+            try {
+                const json = JSON.parse(document.getElementById('jsonInput').value);
+                if(!Array.isArray(json) || json.length === 0) {
+                    alert('Please enter a valid JSON array');
+                    return;
+                }
+                const headers = Object.keys(json[0]);
+                const csv = [headers.join(',')];
+                json.forEach(row => {
+                    const values = headers.map(h => {
+                        let v = row[h] === undefined ? '' : String(row[h]);
+                        if(v.includes(',') || v.includes('"')) v = '"' + v.replace(/"/g, '""') + '"';
+                        return v;
+                    });
+                    csv.push(values.join(','));
+                });
+                document.getElementById('csvOutput').value = csv.join('\n');
+            } catch(e) {
+                alert('Invalid JSON: ' + e.message);
+            }
+        }
+        function copy() { navigator.clipboard.writeText(document.getElementById('csvOutput').value); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - Free Online BMI Calculator</title>
+    <meta name="description" content="Calculate your Body Mass Index (BMI) instantly. Free online BMI calculator with results interpretation.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/bmi-calculator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+</head>
+<body>
+    <div class="bg-shapes"><div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div></div>
+    <header class="header">
+        <div class="container"><div class="header-inner">
+            <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+            <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+            <div class="header-actions"><div class="theme-toggle-wrap"><button class="theme-toggle"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button><div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div></div><button class="mobile-menu-btn"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
+        </div></div>
+    </header>
+    <div class="mobile-menu"><a href="#tools" class="mobile-nav-link">Tools</a><a href="#categories" class="mobile-nav-link">Categories</a><div class="mobile-theme-options"><button class="mobile-theme-btn" data-theme="system">System</button><button class="mobile-theme-btn" data-theme="light">Light</button><button class="mobile-theme-btn" data-theme="dark">Dark</button></div></div>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>BMI Calculator</h1><p>Calculate your Body Mass Index</p></div>
+                <div class="tool-content">
+                    <div class="form-group"><label>Height (cm)</label><input type="number" id="height" placeholder="175" oninput="calculate()"></div>
+                    <div class="form-group"><label>Weight (kg)</label><input type="number" id="weight" placeholder="70" oninput="calculate()"></div>
+                    <div class="result"><div class="result-value" id="bmi">-</div><div class="result-label">Your BMI</div><div id="category" style="margin-top: 8px; font-size: 14px;"></div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-simple"><div class="container"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function calculate() {
+            const h = parseFloat(document.getElementById('height').value);
+            const w = parseFloat(document.getElementById('weight').value);
+            if(!h || !w) { document.getElementById('bmi').textContent = '-'; return; }
+            const bmi = w / ((h/100) * (h/100));
+            document.getElementById('bmi').textContent = bmi.toFixed(1);
+            let cat = '';
+            let color = '';
+            if(bmi < 18.5) { cat = 'Underweight'; color = '#f59e0b'; }
+            else if(bmi < 25) { cat = 'Normal weight'; color = '#10b981'; }
+            else if(bmi < 30) { cat = 'Overweight'; color = '#f59e0b'; }
+            else { cat = 'Obese'; color = '#ef4444'; }
+            document.getElementById('category').innerHTML = `<span style="color:${color};font-weight:600">${cat}</span>`;
+        }
+    </script>
+</body>
+</html>

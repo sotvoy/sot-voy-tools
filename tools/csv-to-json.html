@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to JSON Converter - Free Online Tool</title>
+    <meta name="description" content="Convert CSV data to JSON instantly. Free online CSV to JSON converter.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/csv-to-json.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
+</head>
+<body>
+    <div class="bg-shapes"><div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div></div>
+    <header class="header">
+        <div class="container"><div class="header-inner">
+            <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+            <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+            <div class="header-actions"><div class="theme-toggle-wrap"><button class="theme-toggle"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button><div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div></div><button class="mobile-menu-btn"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
+        </div></div>
+    </header>
+    <div class="mobile-menu"><a href="#tools" class="mobile-nav-link">Tools</a><a href="#categories" class="mobile-nav-link">Categories</a><div class="mobile-theme-options"><button class="mobile-theme-btn" data-theme="system">System</button><button class="mobile-theme-btn" data-theme="light">Light</button><button class="mobile-theme-btn" data-theme="dark">Dark</button></div></div>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container" style="max-width: 700px;">
+                <div class="tool-header"><h1>CSV to JSON</h1><p>Convert CSV data to JSON format</p></div>
+                <div class="tool-content">
+                    <div class="form-group"><label>Paste CSV data (first row = headers)</label><textarea id="csvInput" class="tool-textarea" placeholder="name,age,city&#10;John,30,NYC&#10;Jane,25,LA"></textarea></div>
+                    <div class="form-group"><label><input type="checkbox" id="hasHeader" checked> First row contains headers</label></div>
+                    <button class="tool-btn" onclick="convert()">Convert to JSON</button>
+                    <div style="margin-top: 16px;"><textarea id="jsonOutput" class="tool-textarea" readonly placeholder="JSON output will appear here..."></textarea></div>
+                    <div class="tool-actions"><button class="tool-btn" onclick="copy()">Copy JSON</button></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-simple"><div class="container"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function convert() {
+            const csv = document.getElementById('csvInput').value.trim();
+            if(!csv) return;
+            const hasHeader = document.getElementById('hasHeader').checked;
+            const lines = csv.split('\n').map(l => l.trim()).filter(l => l);
+            if(lines.length === 0) return;
+            let headers;
+            let startIndex = 0;
+            if(hasHeader) {
+                headers = lines[0].split(',').map(h => h.trim());
+                startIndex = 1;
+            } else {
+                const firstRow = lines[0].split(',');
+                headers = firstRow.map((_, i) => 'field' + (i+1));
+            }
+            const result = [];
+            for(let i = startIndex; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim());
+                const obj = {};
+                headers.forEach((h, j) => {
+                    obj[h] = values[j] || '';
+                });
+                result.push(obj);
+            }
+            document.getElementById('jsonOutput').value = JSON.stringify(result, null, 2);
+        }
+        function copy() { navigator.clipboard.writeText(document.getElementById('jsonOutput').value); }
+    </script>
+</body>
+</html>
