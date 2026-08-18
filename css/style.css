@@ -1344,3 +1344,114 @@ img { max-width: 100%; display: block; }
         gap: 20px;
     }
 }
+
+/* Fix element sizes - Mobile First */
+@media (max-width: 380px) {
+    .header-inner {
+        padding: 0 8px;
+        height: 56px;
+    }
+    .logo {
+        font-size: 14px;
+        gap: 6px;
+    }
+    .logo-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    .hero {
+        padding: 50px 0 40px;
+        min-height: auto;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
+    .hero-description {
+        font-size: 14px;
+    }
+    .section {
+        padding: 50px 0;
+    }
+    .section-header h2 {
+        font-size: 24px;
+    }
+    .quick-find-card {
+        padding: 16px;
+    }
+    .quick-find-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .quick-find-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .quick-find-card h3 {
+        font-size: 13px;
+    }
+    .quick-find-card p {
+        font-size: 10px;
+    }
+    .tool-card {
+        padding: 14px;
+        gap: 10px;
+    }
+    .tool-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .tool-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .tool-info h3 {
+        font-size: 14px;
+    }
+    .tool-info p {
+        font-size: 12px;
+    }
+    .category-card {
+        padding: 20px 14px;
+    }
+    .category-icon {
+        width: 50px;
+        height: 50px;
+    }
+    .category-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+    .category-card h3 {
+        font-size: 16px;
+    }
+    .cta-card {
+        padding: 40px 16px;
+    }
+    .cta-card h2 {
+        font-size: 24px;
+    }
+    .cta-button {
+        padding: 14px 24px;
+        font-size: 14px;
+    }
+    .tool-page {
+        padding: 30px 0;
+    }
+    .tool-content {
+        padding: 16px;
+    }
+    .tool-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .tool-stat {
+        padding: 14px 10px;
+    }
+    .tool-stat-value {
+        font-size: 20px;
+    }
+    .tool-stat-label {
+        font-size: 10px;
+    }
+}
