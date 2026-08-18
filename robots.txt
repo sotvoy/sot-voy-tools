@@ -1,0 +1,8 @@
+# SOT VOY Tools - Robots.txt
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+# Sitemap
+Sitemap: https://sot-voy-tools.com/sitemap.xml

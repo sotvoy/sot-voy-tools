@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator - Free Online Percentage Tool</title>
+    <meta name="description" content="Calculate percentages easily with our free online percentage calculator. Calculate percentage of a number, percentage change, and more.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/percentage-calculator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 700px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 40px; }
+        .tool-header h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; }
+        .calc-section { margin-bottom: 32px; }
+        .calc-section h3 { font-size: 18px; margin-bottom: 16px; }
+        .calc-row { display: flex; gap: 12px; margin-bottom: 12px; }
+        .calc-input { flex: 1; padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 16px; color: var(--text); }
+        .calc-input:focus { outline: none; border-color: var(--primary); }
+        .calc-result { padding: 20px; background: var(--surface-hover); border-radius: var(--radius); text-align: center; }
+        .calc-result-value { font-size: 28px; font-weight: 700; color: var(--primary); }
+        .calc-btn { padding: 14px 28px; background: var(--gradient-primary); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; width: 100%; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop">
+                    <a href="../index.html#tools" class="nav-link">Tools</a>
+                    <a href="../index.html#categories" class="nav-link">Categories</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </button>
+                        <div class="theme-dropdown">
+                            <button class="theme-option active" data-theme="system">System</button>
+                            <button class="theme-option" data-theme="light">Light</button>
+                            <button class="theme-option" data-theme="dark">Dark</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Percentage Calculator</h1><p>Calculate percentages quickly and easily</p></div>
+                <div class="tool-content">
+                    <div class="calc-section">
+                        <h3>X is what % of Y?</h3>
+                        <div class="calc-row">
+                            <input type="number" id="p1_num" class="calc-input" placeholder="X">
+                            <span style="align-self:center;font-weight:600">is</span>
+                            <input type="number" id="p1_total" class="calc-input" placeholder="Y">
+                            <span style="align-self:center;font-weight:600">% of</span>
+                        </div>
+                        <div class="calc-result"><div class="calc-result-value" id="p1_result">0%</div></div>
+                    </div>
+                    <div class="calc-section">
+                        <h3>X% of Y = ?</h3>
+                        <div class="calc-row">
+                            <input type="number" id="p2_percent" class="calc-input" placeholder="X%">
+                            <span style="align-self:center;font-weight:600">of</span>
+                            <input type="number" id="p2_num" class="calc-input" placeholder="Y">
+                            <span style="align-self:center;font-weight:600">=</span>
+                        </div>
+                        <div class="calc-result"><div class="calc-result-value" id="p2_result">0</div></div>
+                    </div>
+                    <button class="calc-btn" onclick="calculateAll()">Calculate</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></div></footer>
+    <script src="../js/theme.js"></script>
+    <script>
+        function calculateAll() {
+            // X is what % of Y
+            const p1_num = parseFloat(document.getElementById('p1_num').value) || 0;
+            const p1_total = parseFloat(document.getElementById('p1_total').value) || 1;
+            document.getElementById('p1_result').textContent = p1_total ? ((p1_num / p1_total) * 100).toFixed(2) + '%' : '0%';
+
+            // X% of Y
+            const p2_percent = parseFloat(document.getElementById('p2_percent').value) || 0;
+            const p2_num = parseFloat(document.getElementById('p2_num').value) || 0;
+            document.getElementById('p2_result').textContent = ((p2_percent / 100) * p2_num).toFixed(2);
+        }
+
+        document.querySelectorAll('.calc-input').forEach(input => {
+            input.addEventListener('input', calculateAll);
+        });
+    </script>
+</body>
+</html>
