@@ -738,3 +738,354 @@ MASTER INSTRUCTION TO THE BUILDER
 Build SOT VOY Tools as a production-quality, scalable, SEO-focused SaaS-style browser utility platform. Prioritize the homepage first. Do not rush into adding tools while the foundation is unstable. Inspect every section line-by-line and component-by-component. Fix root causes rather than layering patches. Use original human-written content, meaningful SVG icons instead of emojis, polished responsive layouts, professional typography, subtle gradients, sophisticated SaaS motion, interactive product previews, accessible navigation, functional System/Light/Dark themes, reliable mobile navigation, strong internal linking, semantic HTML, SEO foundations, performance optimization, and accessibility. Test every component across phone, tablet, and desktop layouts. Every button and link must eventually lead somewhere meaningful. Every visual element must have a purpose. Every tool must eventually be a genuinely functional product, not a decorative mockup. Build the architecture so the platform can grow from 20+ tools to 100–200+ tools without becoming difficult to maintain. The ultimate goal is a genuinely useful, fast, trustworthy, searchable and monetizable utility platform capable of attracting organic traffic and supporting advertising without compromising user experience.
 
 That is the single source of truth I would use for the project going forward.
+
+Tools:
+
+🔥 Tier 1 — Build these first
+These are the tools I'd prioritize for the initial SOTBOY launch.
+Text & Writing
+Word Counter
+Character Counter
+Sentence Counter
+Paragraph Counter
+Reading Time Calculator
+Case Converter
+Uppercase Converter
+Lowercase Converter
+Title Case Converter
+Remove Duplicate Lines
+Remove Extra Spaces
+Text Cleaner
+Text Reverser
+Lorem Ipsum Generator
+Text to Slug Converter
+Developer 16. JSON Formatter 17. JSON Validator 18. JSON Minifier 19. XML Formatter 20. XML Validator 21. HTML Formatter 22. CSS Formatter 23. JavaScript Formatter 24. SQL Formatter 25. Markdown Formatter 26. Base64 Encoder 27. Base64 Decoder 28. URL Encoder 29. URL Decoder 30. JWT Decoder 31. UUID Generator 32. Regex Tester 33. Timestamp Converter 34. Unix Timestamp Converter 35. Hash Generator 36. MD5 Generator 37. SHA-1 Generator 38. SHA-256 Generator 39. SHA-512 Generator
+Image 40. Image Compressor 41. Image Resizer 42. Image Cropper 43. Image Converter 44. JPG to PNG 45. PNG to JPG 46. JPG to WebP 47. PNG to WebP 48. WebP to JPG 49. WebP to PNG 50. Image to Base64 51. Base64 to Image 52. Image Metadata Viewer 53. Image Color Picker 54. Favicon Generator 55. ICO Converter 56. Image DPI Calculator
+SEO 57. Meta Tag Generator 58. Open Graph Generator 59. Twitter Card Generator 60. Robots.txt Generator 61. Sitemap Generator 62. SEO Title Generator 63. Meta Description Generator 64. URL Slug Generator 65. Keyword Density Checker 66. Word Count for SEO 67. SERP Snippet Preview 68. Canonical URL Generator 69. Hreflang Generator 70. Schema Markup Generator 71. FAQ Schema Generator 72. Article Schema Generator 73. Local Business Schema Generator
+Calculators 74. Percentage Calculator 75. Percentage Increase Calculator 76. Percentage Decrease Calculator 77. Discount Calculator 78. Tip Calculator 79. Tax Calculator 80. Profit Margin Calculator 81. Markup Calculator 82. Average Calculator 83. Ratio Calculator 84. Age Calculator 85. Date Difference Calculator 86. Time Duration Calculator 87. BMI Calculator 88. BMR Calculator 89. Compound Interest Calculator 90. Simple Interest Calculator 91. Loan Calculator 92. Mortgage Calculator 93. EMI Calculator 94. Salary Calculator 95. Hourly to Salary Calculator
+Converters 96. Unit Converter 97. Length Converter 98. Weight Converter 99. Temperature Converter 100. Area Converter 101. Volume Converter 102. Speed Converter 103. Time Converter 104. Data Storage Converter 105. Bits to Bytes Converter 106. Celsius to Fahrenheit 107. Fahrenheit to Celsius 108. Kilometers to Miles 109. Miles to Kilometers 110. Kilograms to Pounds 111. Pounds to Kilograms
+That gives you 111 tools already.
+🚀 Tier 2 — High-value expansion
+Then add:
+PDF / Documents
+PDF Merger
+PDF Splitter
+PDF Compressor
+PDF to JPG
+JPG to PDF
+PNG to PDF
+WebP to PDF
+PDF Page Extractor
+PDF Page Rotator
+PDF Metadata Viewer
+PDF Text Extractor
+Word to PDF
+PDF to Word
+Excel to PDF
+PowerPoint to PDF
+Security / Encoding
+Password Generator
+Passphrase Generator
+Random Password Generator
+Hash Generator
+SHA-256 Generator
+SHA-512 Generator
+HMAC Generator
+URL Encoder/Decoder
+HTML Encoder/Decoder
+HTML Entity Encoder
+JWT Decoder
+JWT Generator
+Hex Encoder/Decoder
+Binary Encoder/Decoder
+Decimal to Binary
+Binary to Decimal
+Decimal to Hex
+Hex to Decimal
+ASCII Converter
+Color / Design
+Color Picker
+HEX to RGB
+RGB to HEX
+RGB to HSL
+HSL to RGB
+HEX to HSL
+Color Palette Generator
+Gradient Generator
+CSS Gradient Generator
+CSS Box Shadow Generator
+CSS Border Radius Generator
+CSS Button Generator
+CSS Glassmorphism Generator
+CSS Text Shadow Generator
+Contrast Checker
+
+
+📱 Tier 3 — Creator & social-media tools
+This is another category worth having because creators repeatedly search for small utilities.
+YouTube Title Generator
+YouTube Description Generator
+YouTube Tag Generator
+YouTube Hashtag Generator
+YouTube Thumbnail Size Checker
+Instagram Caption Generator
+Instagram Hashtag Generator
+TikTok Caption Generator
+TikTok Hashtag Generator
+Social Media Character Counter
+Tweet/X Character Counter
+Facebook Post Character Counter
+LinkedIn Post Character Counter
+YouTube Revenue Calculator
+YouTube CPM Calculator
+YouTube RPM Calculator
+Engagement Rate Calculator
+Social Media Bio Generator
+UTM Builder
+UTM URL Generator
+🛠️ Tier 4 — Web & webmaster tools
+DNS Lookup
+IP Address Lookup
+My IP Address
+Domain to IP
+HTTP Status Code Checker
+SSL Certificate Checker
+Website Response Time Checker
+URL Redirect Checker
+Broken Link Checker
+Sitemap URL Extractor
+Robots.txt Tester
+User-Agent Parser
+HTTP Header Checker
+Website Screenshot Tool
+QR Code Generator
+QR Code Reader
+URL Shortener
+URL Parser
+Domain Name Generator
+Website Uptime Checker
+Important: tools such as DNS lookup, SSL checking, website screenshots, uptime checking, and broken-link checking may require a backend/API rather than pure browser JavaScript. Don't let Bolt fake these. If an external API is necessary, structure the application for a legitimate API/backend integration.
+
+🧮 Tier 5 — More calculators
+Date Calculator
+Days Between Dates
+Age in Days Calculator
+Time Zone Converter
+Work Hours Calculator
+Overtime Calculator
+Salary After Tax Calculator
+Investment Calculator
+Savings Calculator
+ROI Calculator
+CAGR Calculator
+Break-Even Calculator
+Commission Calculator
+VAT Calculator
+Sales Tax Calculator
+Electricity Cost Calculator
+Fuel Cost Calculator
+Pace Calculator
+Speed Calculator
+Distance Calculator
+🎲 Tier 6 — Generators
+Random Number Generator
+Random Letter Generator
+Random String Generator
+Random Name Generator
+Random Team Generator
+Random Picker
+Coin Flip
+Dice Roller
+Bingo Card Generator
+Password Generator
+Username Generator
+Business Name Generator
+Domain Name Generator
+Color Palette Generator
+QR Code Generator
+Lorem Ipsum Generator
+UUID Generator
+Fake Data Generator
+JSON Test Data Generator
+CSV Generator
+🧑‍💻 Tier 7 — More developer tools
+CSV to JSON
+JSON to CSV
+JSON to XML
+XML to JSON
+JSON to TypeScript
+JSON to YAML
+YAML to JSON
+Markdown to HTML
+HTML to Markdown
+HTML Entity Encoder
+HTML Entity Decoder
+URL Parser
+Query String Parser
+Query String Generator
+Cron Expression Generator
+Cron Expression Parser
+Regex Generator
+Regex Explainer
+Color Code Converter
+Unix Timestamp Generator
+Unix Timestamp Converter
+Epoch Converter
+Number to Words
+Words to Number
+Roman Numeral Converter
+Roman Numeral to Number
+Number to Roman Numeral
+
+⭐ The tools I'd put on the SOT VOY homepage
+Don't put 267 tools on the homepage. That would look awful.
+Instead, make the homepage feature around 12–18 tools.
+I'd use:
+Image Compressor
+Image Converter
+QR Code Generator
+Word Counter
+JSON Formatter
+Password Generator
+PDF Merger
+PDF Compressor
+JPG to PDF
+Percentage Calculator
+Age Calculator
+Unit Converter
+Meta Tag Generator
+YouTube Title Generator
+URL Encoder/Decoder
+Base64 Encoder/Decoder
+Then have:
+"Explore 260+ Free Tools →"
+
+💰 And here's the important AdSense part
+Don't build 267 tools and slap ads everywhere.
+That's actually a bad strategy.
+Google's AdSense policies prohibit things like encouraging ad clicks, making ads indistinguishable from content, or using misleading layouts. �
+Google Help
+Instead, I'd structure SOT VOY so that each genuinely useful tool becomes a landing page.
+For example:
+/tools/image-compressor
+Then the page contains:
+Image Compressor
+Compress JPG, PNG and WebP images online while keeping your images looking great.
+[Actual tool]
+Then:
+How to compress an image
+What image compression does
+JPG vs PNG vs WebP
+Recommended image sizes
+Before/after example
+FAQ
+Related tools
+Then link:
+Image Compressor → Image Resizer → Image Converter → JPG to WebP → PNG to WebP
+That's much more valuable than a thin page containing only a textbox and an ad.
+Google specifically says pages should provide substantial, satisfying value and warns against producing lots of content primarily to attract search traffic.
+Google for Developers
+My recommended SOTBOY roadmap
+Phase 1: 50–75 excellent tools
+Phase 2: 100–150 tools
+Phase 3: 200+ tools
+I'd rather have 75 genuinely excellent tools ranking and getting repeat users than 300 half-broken tools.
+And there's evidence that current successful tool directories are clustering around exactly these categories—developer, image, SEO, text, calculators/converters, security, and file utilities.
+The Free AI Tools +1
+One more thing: I would not tell Bolt to automatically generate all 267 tools at once. That's exactly how you end up with the "everything looks finished but half of it doesn't work" problem you had yesterday.
+If you want, I can give you a second Bolt.new prompt specifically for Phase 1: the first 50 highest-priority SOT VOY tools, including the exact functionality each tool must have, SEO title, URL slug, description, and which tools should be built first.
+
+1. Don't rely on tools alone
+Build tool + educational content around each important tool.
+For example:
+Image Compressor
+/tools/image-compressor
+/guides/how-to-compress-images
+/guides/jpg-vs-webp
+/guides/best-image-size-for-websites
+That gives Google more genuinely useful content to understand and users more reasons to stay.
+2. Add a "Popular Searches" system
+Track which tools people actually use and surface:
+Trending tools
+Most used
+Recently added
+Popular this week
+But don't fabricate numbers. Start with real usage data once analytics are connected.
+3. Build an excellent search engine
+This is really important once you have 100–200+ tools.
+Someone can type:
+"make photo smaller"
+and SOT VOY should return:
+Image Compressor
+Someone types:
+"calculate how much I saved"
+→ Discount Calculator
+Someone types:
+"turn json into csv"
+→ JSON to CSV
+4. Add tool favorites
+Let users ⭐ tools and save them locally without requiring an account.
+That encourages repeat visits.
+5. Add "Recently Used"
+Also local-storage based.
+A returning user should immediately see:
+Recently Used
+→ JSON Formatter
+→ Image Compressor
+→ QR Generator
+6. Make privacy a selling point
+For browser-based tools, say something like:
+Your files stay on your device.
+—but only when that's actually true.
+That's particularly attractive for image, text, JSON and encoding tools.
+7. Don't put AdSense everywhere
+I'd have the tool itself be the star.
+A possible layout:
+Header
+↓
+Tool
+↓
+Useful explanation
+↓
+Ad
+↓
+How to use
+↓
+Related tools
+↓
+FAQ
+That feels like a real product rather than an ad farm.
+8. Add a "Suggest a Tool" feature
+At the bottom:
+Can't find the tool you need?
+Suggest a tool for SOT VOY.
+That gives you a pipeline of ideas based on what actual users want.
+9. Make the architecture ready for accounts later
+You don't need accounts now.
+But design the code so you can eventually add:
+Favorites sync
+User history
+Saved results
+Custom tool collections
+API access
+Premium tools
+without rebuilding the entire application.
+10. Eventually create an API
+This could become the real business opportunity beyond advertising.
+For example:
+SOTBOY Tools API
+Developers could pay to use:
+JSON processing
+image compression
+QR generation
+metadata generation
+PDF processing
+URL utilities
+Then you have AdSense + API revenue instead of depending entirely on ads.
+And one big recommendation
+Don't think:
+"How do I make 200 pages so Google gives me traffic?"
+Think:
+"How do I make 200 tools that people genuinely want to bookmark?"
+That's the difference between a tool website that becomes a useful product and one that ends up with hundreds of pages nobody uses.
+If we build SOT VOY properly, I'd aim for speed + usefulness + excellent UX + strong SEO + hundreds of genuinely working utilities. That's a much stronger foundation for monetization.
