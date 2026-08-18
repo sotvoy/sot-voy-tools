@@ -10,14 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tool-page.css">
     <style>
-        .tool-page { padding: 60px 0; min-height: 100vh; }
-        .tool-container { max-width: 900px; margin: 0 auto; }
-        .tool-header { text-align: center; margin-bottom: 40px; }
-        .tool-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
-        .tool-header p { color: var(--text-secondary); font-size: 16px; }
+        .tool-textarea { 
+            width: 100%; 
+            min-height: 180px; 
+            padding: 16px; 
+            background: var(--bg); 
+            border: 1px solid var(--border); 
+            border-radius: var(--radius); 
+            font-family: inherit; 
+            font-size: 15px; 
+            color: var(--text); 
+            resize: vertical;
+            line-height: 1.6;
+        }
         
-        .tool-content { 
+        .tool-textarea:focus { 
+            outline: none; 
+            border-color: var(--primary);
+        }
+        
+        .tool-textarea::placeholder { color: var(--text-muted); }
+    </style> 
             background: var(--surface); 
             border: 1px solid var(--border); 
             border-radius: var(--radius-xl); 

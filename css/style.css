@@ -606,39 +606,22 @@ img { max-width: 100%; display: block; }
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 14px 28px;
-    font-size: 15px;
+    padding: 12px 24px;
+    font-size: 14px;
     font-weight: 600;
     border-radius: var(--radius);
     transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transform: translateX(-100%);
-    transition: var(--transition);
-}
-
-.btn:hover::before {
-    transform: translateX(100%);
 }
 
 .btn-primary {
-    background: var(--gradient-main);
-    background-size: 200% 200%;
+    background: var(--gradient-primary);
     color: white;
-    box-shadow: var(--shadow-glow);
-    animation: gradientFlow 4s ease infinite;
+    box-shadow: var(--shadow);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
@@ -649,8 +632,8 @@ img { max-width: 100%; display: block; }
 
 .btn-secondary:hover {
     border-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-glow-sm);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 .hero-trust {

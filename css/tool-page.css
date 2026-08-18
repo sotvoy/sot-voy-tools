@@ -128,10 +128,7 @@
 .tool-stat-value {
     font-size: clamp(24px, 4vw, 32px);
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary), #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary);
 }
 
 .tool-stat-label {
@@ -139,6 +136,14 @@
     color: var(--text-muted);
     margin-top: 6px;
     font-weight: 500;
+}
+
+/* Second row of stats */
+.tool-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
 }
 
 /* Buttons */
