@@ -441,13 +441,14 @@ img { max-width: 100%; display: block; }
     justify-content: center;
     background: var(--gradient-primary);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-glow-sm);
+    border: none;
+    cursor: pointer;
     transition: var(--transition);
+    pointer-events: auto;
 }
 
 .mobile-menu-btn:hover {
     transform: scale(1.05);
-    box-shadow: var(--shadow-glow);
 }
 
 .mobile-menu-btn svg {
@@ -455,6 +456,7 @@ img { max-width: 100%; display: block; }
     height: 20px;
     stroke: white;
     stroke-width: 2;
+    fill: none;
 }
 
 /* Mobile Menu */
