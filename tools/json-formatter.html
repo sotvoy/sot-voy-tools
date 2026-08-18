@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter - Free Online JSON Validator</title>
+    <meta name="description" content="Format, validate, and beautify your JSON data online. Free JSON formatter and validator tool.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/json-formatter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 900px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 40px; }
+        .tool-header h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+        .tool-header p { color: var(--text-secondary); }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+        .tool-textarea { width: 100%; min-height: 250px; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-family: 'Monaco', 'Consolas', monospace; font-size: 14px; color: var(--text); resize: vertical; }
+        .tool-textarea:focus { outline: none; border-color: var(--primary); }
+        .tool-stats { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+        .tool-stat { padding: 12px 20px; background: var(--surface-hover); border-radius: var(--radius); }
+        .tool-stat.error { background: #fef2f2; color: #dc2626; }
+        .tool-stat.valid { background: #f0fdf4; color: #16a34a; }
+        .tool-actions { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+        .tool-btn { padding: 12px 24px; background: var(--gradient-primary); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; }
+        .tool-btn:hover { opacity: 0.9; }
+        .tool-btn.secondary { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop">
+                    <a href="../index.html#tools" class="nav-link">Tools</a>
+                    <a href="../index.html#categories" class="nav-link">Categories</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </button>
+                        <div class="theme-dropdown">
+                            <button class="theme-option active" data-theme="system">System</button>
+                            <button class="theme-option" data-theme="light">Light</button>
+                            <button class="theme-option" data-theme="dark">Dark</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>JSON Formatter</h1><p>Format, validate, and beautify your JSON data</p></div>
+                <div class="tool-content">
+                    <textarea id="jsonInput" class="tool-textarea" placeholder='{"example": "Paste your JSON here..."}'></textarea>
+                    <div class="tool-stats" id="jsonStats">
+                        <div class="tool-stat" id="jsonStatus">Enter JSON to validate</div>
+                    </div>
+                    <div class="tool-actions">
+                        <button class="tool-btn" onclick="formatJSON()">Format</button>
+                        <button class="tool-btn" onclick="minifyJSON()">Minify</button>
+                        <button class="tool-btn secondary" onclick="validateJSON()">Validate</button>
+                        <button class="tool-btn secondary" onclick="clearJSON()">Clear</button>
+                        <button class="tool-btn secondary" onclick="copyJSON()">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="../js/theme.js"></script>
+    <script>
+        const jsonInput = document.getElementById('jsonInput');
+        const jsonStatus = document.getElementById('jsonStatus');
+
+        function formatJSON() {
+            try {
+                const parsed = JSON.parse(jsonInput.value);
+                jsonInput.value = JSON.stringify(parsed, null, 2);
+                setStatus(true, 'Valid JSON - Formatted');
+            } catch (e) {
+                setStatus(false, 'Invalid JSON: ' + e.message);
+            }
+        }
+
+        function minifyJSON() {
+            try {
+                const parsed = JSON.parse(jsonInput.value);
+                jsonInput.value = JSON.stringify(parsed);
+                setStatus(true, 'Valid JSON - Minified');
+            } catch (e) {
+                setStatus(false, 'Invalid JSON: ' + e.message);
+            }
+        }
+
+        function validateJSON() {
+            try {
+                JSON.parse(jsonInput.value);
+                setStatus(true, 'Valid JSON');
+            } catch (e) {
+                setStatus(false, 'Invalid JSON: ' + e.message);
+            }
+        }
+
+        function setStatus(valid, message) {
+            jsonStatus.textContent = message;
+            jsonStatus.className = 'tool-stat ' + (valid ? 'valid' : 'error');
+        }
+
+        function clearJSON() {
+            jsonInput.value = '';
+            setStatus(true, 'Enter JSON to validate');
+        }
+
+        function copyJSON() {
+            navigator.clipboard.writeText(jsonInput.value);
+        }
+    </script>
+</body>
+</html>

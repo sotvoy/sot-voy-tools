@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer - Free Online Timer</title>
+    <meta name="description" content="Set custom countdown timers for events, meetings, and reminders. Free online countdown timer.">
+    <link rel="canonical" href="https://sot-voy-tools.com/tools/countdown-timer.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-page { padding: 40px 0; }
+        .tool-container { max-width: 600px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 40px; }
+        .tool-header h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; text-align: center; }
+        .timer-display { font-size: 80px; font-weight: 700; color: var(--primary); font-family: monospace; margin: 32px 0; letter-spacing: 4px; }
+        .timer-inputs { display: flex; gap: 16px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+        .timer-input-group { text-align: center; }
+        .timer-input-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+        .timer-input { width: 80px; padding: 12px; text-align: center; font-size: 24px; font-weight: 600; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
+        .timer-input:focus { outline: none; border-color: var(--primary); }
+        .timer-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .tool-btn { padding: 14px 32px; background: var(--gradient-primary); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; }
+        .tool-btn:hover { opacity: 0.9; }
+        .tool-btn.secondary { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
+        .tool-btn.stop { background: #dc2626; }
+        .presets { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .presets h3 { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; }
+        .preset-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .preset-btn { padding: 8px 16px; background: var(--surface-hover); border: 1px solid var(--border); border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .preset-btn:hover { border-color: var(--primary); color: var(--primary); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
+                <nav class="nav-desktop">
+                    <a href="../index.html#tools" class="nav-link">Tools</a>
+                    <a href="../index.html#categories" class="nav-link">Categories</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" aria-label="Toggle theme">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </button>
+                        <div class="theme-dropdown">
+                            <button class="theme-option active" data-theme="system">System</button>
+                            <button class="theme-option" data-theme="light">Light</button>
+                            <button class="theme-option" data-theme="dark">Dark</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header"><h1>Countdown Timer</h1><p>Set custom countdown timers for any event</p></div>
+                <div class="tool-content">
+                    <div class="timer-display" id="timerDisplay">00:00:00</div>
+                    <div class="timer-inputs">
+                        <div class="timer-input-group">
+                            <label>Hours</label>
+                            <input type="number" class="timer-input" id="hoursInput" min="0" max="99" value="0">
+                        </div>
+                        <div class="timer-input-group">
+                            <label>Minutes</label>
+                            <input type="number" class="timer-input" id="minutesInput" min="0" max="59" value="5">
+                        </div>
+                        <div class="timer-input-group">
+                            <label>Seconds</label>
+                            <input type="number" class="timer-input" id="secondsInput" min="0" max="59" value="0">
+                        </div>
+                    </div>
+                    <div class="timer-buttons">
+                        <button class="tool-btn" id="startBtn" onclick="startTimer()">Start</button>
+                        <button class="tool-btn stop" id="stopBtn" onclick="stopTimer()">Stop</button>
+                        <button class="tool-btn secondary" onclick="resetTimer()">Reset</button>
+                    </div>
+                    <div class="presets">
+                        <h3>Quick Presets</h3>
+                        <div class="preset-btns">
+                            <button class="preset-btn" onclick="setPreset(1)">1 min</button>
+                            <button class="preset-btn" onclick="setPreset(5)">5 min</button>
+                            <button class="preset-btn" onclick="setPreset(10)">10 min</button>
+                            <button class="preset-btn" onclick="setPreset(15)">15 min</button>
+                            <button class="preset-btn" onclick="setPreset(30)">30 min</button>
+                            <button class="preset-btn" onclick="setPreset(60)">1 hour</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="../js/theme.js"></script>
+    <script>
+        let interval = null;
+        let totalSeconds = 0;
+        const display = document.getElementById('timerDisplay');
+        const startBtn = document.getElementById('startBtn');
+
+        function updateDisplay(secs) {
+            const h = Math.floor(secs / 3600);
+            const m = Math.floor((secs % 3600) / 60);
+            const s = secs % 60;
+            display.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (interval) return;
+            if (totalSeconds === 0) {
+                const h = parseInt(document.getElementById('hoursInput').value) || 0;
+                const m = parseInt(document.getElementById('minutesInput').value) || 0;
+                const s = parseInt(document.getElementById('secondsInput').value) || 0;
+                totalSeconds = h * 3600 + m * 60 + s;
+            }
+            if (totalSeconds <= 0) return;
+            
+            interval = setInterval(() => {
+                totalSeconds--;
+                updateDisplay(totalSeconds);
+                if (totalSeconds <= 0) {
+                    stopTimer();
+                    alert('Time is up!');
+                }
+            }, 1000);
+            startBtn.disabled = true;
+        }
+
+        function stopTimer() {
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+            startBtn.disabled = false;
+        }
+
+        function resetTimer() {
+            stopTimer();
+            totalSeconds = 0;
+            updateDisplay(0);
+            document.getElementById('hoursInput').value = 0;
+            document.getElementById('minutesInput').value = 5;
+            document.getElementById('secondsInput').value = 0;
+        }
+
+        function setPreset(minutes) {
+            stopTimer();
+            totalSeconds = minutes * 60;
+            updateDisplay(totalSeconds);
+        }
+    </script>
+</body>
+</html>
