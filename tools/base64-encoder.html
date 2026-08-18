@@ -3,70 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Encoder/Decoder - Free Online Base64 Tool</title>
-    <meta name="description" content="Encode and decode Base64 strings online. Free Base64 encoder and decoder tool.">
+    <title>Base64 Encoder/Decoder - Free Online Tool</title>
+    <meta name="description" content="Encode and decode Base64 strings instantly. Free online Base64 encoder and decoder tool.">
     <link rel="canonical" href="https://sot-voy-tools.com/tools/base64-encoder.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .tool-page { padding: 40px 0; }
-        .tool-container { max-width: 800px; margin: 0 auto; }
-        .tool-header { text-align: center; margin-bottom: 40px; }
-        .tool-header h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
-        .tool-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
-        .tool-textarea { width: 100%; min-height: 120px; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-family: monospace; font-size: 14px; color: var(--text); resize: vertical; margin-bottom: 16px; }
-        .action-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-        .action-btn { padding: 12px 20px; background: var(--gradient-primary); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; }
-        .action-btn.secondary { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
-    </style>
+    <link rel="stylesheet" href="../css/tool-page.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="header-inner">
                 <a href="../index.html" class="logo"><div class="logo-icon">S</div><span>SOT VOY Tools</span></a>
-                <nav class="nav-desktop"><a href="../index.html#tools" class="nav-link">Tools</a><a href="../index.html#categories" class="nav-link">Categories</a></nav>
+                <nav class="nav-desktop">
+                    <a href="../index.html#tools" class="nav-link">Tools</a>
+                    <a href="../index.html#categories" class="nav-link">Categories</a>
+                </nav>
                 <div class="header-actions">
                     <div class="theme-toggle-wrapper">
-                        <button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
-                        <div class="theme-dropdown"><button class="theme-option" data-theme="system">System</button><button class="theme-option" data-theme="light">Light</button><button class="theme-option" data-theme="dark">Dark</button></div>
+                        <button class="theme-toggle" aria-label="Toggle theme">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </button>
+                        <div class="theme-dropdown">
+                            <button class="theme-option" data-theme="system">System</button>
+                            <button class="theme-option" data-theme="light">Light</button>
+                            <button class="theme-option" data-theme="dark">Dark</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
     <main class="tool-page">
         <div class="container">
             <div class="tool-container">
-                <div class="tool-header"><h1>Base64 Encoder/Decoder</h1><p>Encode and decode Base64 strings</p></div>
+                <div class="tool-header">
+                    <h1>Base64 Encoder/Decoder</h1>
+                    <p>Encode or decode Base64 strings instantly</p>
+                </div>
                 <div class="tool-content">
-                    <textarea id="input" class="tool-textarea" placeholder="Enter text to encode or decode..."></textarea>
-                    <div class="action-btns">
-                        <button class="action-btn" onclick="encode()">Encode</button>
-                        <button class="action-btn" onclick="decode()">Decode</button>
-                        <button class="action-btn secondary" onclick="copy()">Copy</button>
-                        <button class="action-btn secondary" onclick="clear()">Clear</button>
+                    <div class="options-group">
+                        <label class="option-label">
+                            <input type="radio" name="mode" value="encode" checked onchange="processBase64()">
+                            Encode
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="mode" value="decode" onchange="processBase64()">
+                            Decode
+                        </label>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="tool-label">Input</label>
+                        <textarea id="inputText" class="tool-textarea mono" placeholder="Enter text to encode or decode..." oninput="processBase64()"></textarea>
+                    </div>
+                    
+                    <div class="tool-actions">
+                        <button class="tool-btn" onclick="processBase64()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            Convert
+                        </button>
+                        <button class="tool-btn secondary" onclick="clearAll()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            Clear
+                        </button>
+                        <button class="tool-btn secondary" onclick="copyOutput()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            Copy
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="tool-label">Output</label>
+                        <textarea id="outputText" class="tool-textarea mono" readonly placeholder="Result will appear here..."></textarea>
+                    </div>
+                    
+                    <div class="tool-stats">
+                        <div class="tool-stat">
+                            <div class="tool-stat-value" id="inputLength">0</div>
+                            <div class="tool-stat-label">Input Length</div>
+                        </div>
+                        <div class="tool-stat">
+                            <div class="tool-stat-value" id="outputLength">0</div>
+                            <div class="tool-stat-label">Output Length</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tool-info">
+                    <h3>About Base64</h3>
+                    <p>Base64 is an encoding scheme that converts binary data into ASCII text format. It's commonly used to encode data in URLs, email attachments, and storing complex data in text-based formats.</p>
+                    <ul>
+                        <li><strong>Encode:</strong> Converts plain text to Base64 encoded string</li>
+                        <li><strong>Decode:</strong> Converts Base64 string back to plain text</li>
+                        <li><strong>Use cases:</strong> Data URLs, email encoding, API authentication</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </main>
-    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 SOT VOY Tools. All rights reserved.</p></div></footer>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 SOT VOY Tools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="../js/theme.js"></script>
     <script>
-        function encode() {
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const inputLength = document.getElementById('inputLength');
+        const outputLength = document.getElementById('outputLength');
+        
+        function processBase64() {
+            const mode = document.querySelector('input[name="mode"]:checked').value;
+            const input = inputText.value;
+            
+            inputLength.textContent = input.length;
+            
+            if (!input) {
+                outputText.value = '';
+                outputLength.textContent = '0';
+                return;
+            }
+            
             try {
-                document.getElementById('input').value = btoa(document.getElementById('input').value);
-            } catch(e) { alert('Invalid input for encoding'); }
+                if (mode === 'encode') {
+                    outputText.value = btoa(unescape(encodeURIComponent(input)));
+                } else {
+                    outputText.value = decodeURIComponent(escape(atob(input)));
+                }
+                outputLength.textContent = outputText.value.length;
+            } catch (e) {
+                outputText.value = 'Error: Invalid input for decoding';
+                outputLength.textContent = '0';
+            }
         }
-        function decode() {
-            try {
-                document.getElementById('input').value = atob(document.getElementById('input').value);
-            } catch(e) { alert('Invalid Base64 for decoding'); }
+        
+        function clearAll() {
+            inputText.value = '';
+            outputText.value = '';
+            inputLength.textContent = '0';
+            outputLength.textContent = '0';
         }
-        function copy() { navigator.clipboard.writeText(document.getElementById('input').value); }
-        function clear() { document.getElementById('input').value = ''; }
+        
+        function copyOutput() {
+            navigator.clipboard.writeText(outputText.value);
+        }
     </script>
 </body>
 </html>
